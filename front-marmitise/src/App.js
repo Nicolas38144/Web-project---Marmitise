@@ -3,13 +3,13 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import HomeView from './views/homeView/homeView.js'
 
+
 import './App.css';
 
 function App() {
     return (
         <div className="App">
             <Router>
-                {/*<NavBar className="Router" />*/}
                 <Routes>
                     <Route path="*" element={<h1>404: page not found</h1>} />
                     <Route path='/' exact element={<HomeView />} />

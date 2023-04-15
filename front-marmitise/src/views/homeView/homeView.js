@@ -1,7 +1,9 @@
 import React,{useEffect, useState} from 'react';
 
-//import Card from '../../Components/card/card.js'
-//import Title from '../../Components/title/title.js'
+
+import NavBar from '../../components/navBar/navBar.js'
+import LoginBox from '../../components/loginBox/loginBox.js'
+
 
 import './homeView.css';
 
@@ -57,25 +59,22 @@ export default function AccueilView(){
   }
   */
 
+    const [btnLogin,setBtnLogin]=useState(false);
+
+    function changeStateBtnLogin(result) {
+        setBtnLogin(result);
+        console.log(btnLogin);
+    }
+
+    useEffect(() => {
+        console.log(btnLogin);
+    });
+
     return(
         <div className='homeView'>
+            <NavBar className="Router" btnLogin={btnLogin} changeStateBtnLogin={changeStateBtnLogin}/>
             <h1>homeView</h1>
-            {/* 
-            <div className='titles'>
-                <Title title="TABLEAU DE BORD" description="Bienvenue ! 👋"></Title>
-            </div> 
-            <div className="carteAdd">
-                <Card name="Session" image={true}></Card>
-                <Card name="Athlete" image={true}></Card>
-                <Card name="Bilan" image={true}></Card>
-            </div>
-            <div className='carteInfo'>
-                <Card name="Athletes" image={false} info={athlete}></Card>
-                <Card name="Sessions" image={false} info={session}></Card>
-                <Card name="Bilans" image={false} info={bilan}></Card>
-                <Card name="Utilisateurs" image={false} info={1100}></Card>
-            </div>
-            */}
+            <LoginBox className='loginBox'  btnLogin={btnLogin} changeStateBtnLogin={changeStateBtnLogin}/>
         </div>
 
     );
