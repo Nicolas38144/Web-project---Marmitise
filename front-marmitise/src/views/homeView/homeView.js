@@ -1,9 +1,7 @@
 import React,{useEffect, useState} from 'react';
 
-
 import NavBar from '../../components/navBar/navBar.js'
 import LoginBox from '../../components/loginBox/loginBox.js'
-
 
 import './homeView.css';
 
@@ -60,21 +58,42 @@ export default function AccueilView(){
   */
 
     const [btnLogin,setBtnLogin]=useState(false);
+    const [isLogged, setIsLogged]=useState(false);
+    const [user, setUser]=useState('');
 
     function changeStateBtnLogin(result) {
         setBtnLogin(result);
-        console.log(btnLogin);
+    }
+
+    function changeTextLogin(result) {
+        setIsLogged(result);
+    }
+
+    function setCurrentUser(elem) {
+        setUser(elem);
     }
 
     useEffect(() => {
-        console.log(btnLogin);
+        console.log("btnLogin : " + btnLogin);
+        console.log("isLogged : " + isLogged);
+        console.log("user : " + user);
     });
 
     return(
         <div className='homeView'>
-            <NavBar className="Router" btnLogin={btnLogin} changeStateBtnLogin={changeStateBtnLogin}/>
-            <h1>homeView</h1>
-            <LoginBox className='loginBox'  btnLogin={btnLogin} changeStateBtnLogin={changeStateBtnLogin}/>
+            <NavBar className="Router"
+                btnLogin={btnLogin} 
+                changeStateBtnLogin={changeStateBtnLogin} 
+                isLogged={isLogged} 
+                setCurrentUser={setCurrentUser} 
+                changeTextLogin={changeTextLogin} 
+            />
+            <LoginBox className='loginBox'  
+                btnLogin={btnLogin} 
+                changeStateBtnLogin={changeStateBtnLogin} 
+                setCurrentUser={setCurrentUser} 
+                changeTextLogin={changeTextLogin} 
+            />
         </div>
 
     );

@@ -1,10 +1,19 @@
-import React,{useEffect, useState} from 'react';
+import React,{useEffect, useState, useRef} from 'react';
 import {Helmet} from "react-helmet";
+//import { useNavigate } from 'react-router-dom';
+//const navigate = useNavigate();
 
 import './loginBox.css';
 
-
 export default function LoginBox(props){
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [displayError, setDisplayError]=useState('')
+    const emailLoginInputRef = useRef(null);
+    const passwordLoginInputRef = useRef(null);
+    const emailRegisterInputRef = useRef(null);
+    const passwordRegisterInputRef = useRef(null);
 
     useEffect(()=>{
         const wrapper = document.querySelector('.wrapper');
@@ -29,8 +38,72 @@ export default function LoginBox(props){
         iconClose.addEventListener('click', ()=> {
             wrapper.classList.remove('active-popup');
             props.changeStateBtnLogin(false);
+            //pour automatiquement revenir sur login si on quitte sur register
+            wrapper.classList.remove('active');
+            emptyInputs();
         });
     })
+
+    function closeLoginBox() {
+        const wrapper = document.querySelector('.wrapper');
+        wrapper.classList.remove('active-popup');
+        props.changeStateBtnLogin(false);
+        emptyInputs();
+    }
+    function passRegisterToLogin(){
+        const wrapper = document.querySelector('.wrapper');
+        wrapper.classList.remove('active');
+    }
+    function treatmentData(data, dataUser) {
+        console.log('message : ' + data.message);
+        if (data.message === 'Login successful !') {
+            closeLoginBox();
+            props.changeTextLogin(true);
+            props.setCurrentUser(dataUser.email);
+        }
+        else {
+            setDisplayError(data.message);
+        }
+    }
+    function emptyInputs() {
+        emailLoginInputRef.current.value = '';
+        passwordLoginInputRef.current.value = '';
+        emailRegisterInputRef.current.value = '';
+        passwordRegisterInputRef.current.value = '';
+        setEmail('');
+        setPassword('');
+        setDisplayError('');
+    }
+
+    
+    const handleSubmitRegister = (e) => {
+        e.preventDefault();
+        const data = {email, password};
+
+        fetch('http://localhost:8000/api/register', {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .then(passRegisterToLogin())
+        .catch(error => console.error(error));
+    }
+
+    const handleSubmitLogin = (e) => {
+        e.preventDefault();
+        const dataUser = {email, password};
+
+        fetch('http://localhost:8000/api/login', {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(dataUser)
+        })
+        .then(response => response.json())
+        .then(data => treatmentData(data, dataUser))
+        .catch(error => console.error(error));
+    }
 
     return(
         <>
@@ -40,41 +113,41 @@ export default function LoginBox(props){
                 
                 <div className='form-box-login'>
                     <h2>Login</h2>
-                    <form action='#'>
+                    <form action='javascrit:' onSubmit={handleSubmitLogin}>
                         <div className='input-box'>
                             <span className='icon'><ion-icon name="mail"></ion-icon></span>
-                            <input type='email' required></input>
+                            <input ref={emailLoginInputRef} type='email' required onChange={(e) => setEmail(e.target.value)}></input>
                             <label>Email</label>
                         </div>
                         <div className='input-box'>
                             <span className='icon'><ion-icon name="lock-closed"></ion-icon></span>
-                            <input type='password' required></input>
+                            <input ref={passwordLoginInputRef} type='password' required onChange={(e) => setPassword(e.target.value)}></input>
                             <label>Password</label>
                         </div>
                         <button type='submit' className='btn'>Login</button>
                         <div className='login-register'>
-                            <p>Don't have an account ? <a href='#' className='register-link'>Register</a></p>
-                            
+                            <p>Don't have an account ? <span className='register-link'>Register</span></p>
+                            <p className='login-erreur'>{displayError}</p>
                         </div>
                     </form>
                 </div>
 
                 <div className='form-box-register'>
                     <h2>Registration</h2>
-                    <form action='#'>
+                    <form action='javascrit:' onSubmit={handleSubmitRegister}>
                         <div className='input-box'>
                             <span className='icon'><ion-icon name="mail"></ion-icon></span>
-                            <input type='email' required></input>
+                            <input ref={emailRegisterInputRef} type='email' required onChange={(e) => setEmail(e.target.value)}></input>
                             <label>Email</label>
                         </div>
                         <div className='input-box'>
                             <span className='icon'><ion-icon name="lock-closed"></ion-icon></span>
-                            <input type='password' required></input>
+                            <input ref={passwordRegisterInputRef} type='password' required onChange={(e) => setPassword(e.target.value)}></input>
                             <label>Password</label>
                         </div>
                         <button type='submit' className='btn'>Register</button>
                         <div className='login-register'>
-                            <p>Already have an account ? <a href='#' className='login-link'>Login</a></p>
+                            <p>Already have an account ? <span className='login-link'>Login</span></p>
                             
                         </div>
                     </form>

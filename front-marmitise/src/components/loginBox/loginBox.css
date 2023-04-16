@@ -131,15 +131,20 @@
     color: #FFF0ED;
     text-align: center;
     font-weight: 500;
-    margin: 25px 0 10px
+    margin: 25px 0 10px;
 }
 
-.loginBox .login-register p a {
+.loginBox .login-register p span {
     color: #FFF0ED;
     text-decoration: none;
     font-weight: 600;
 }
 
-.loginBox .login-register p a:hover {
+.loginBox .login-register p span:hover {
     text-decoration: underline;
+    cursor: pointer;
+}
+
+.loginBox .login-erreur {
+    padding-top: 7%;
 }
