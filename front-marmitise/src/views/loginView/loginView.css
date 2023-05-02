@@ -1,0 +1,9 @@
+.loginView {
+    /*min-height: 100vh;*/
+}
+
+.loginView .loginBox {
+    display: flex;
+    justify-content: center;
+    margin-top: 3%;
+}

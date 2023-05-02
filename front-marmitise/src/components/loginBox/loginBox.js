@@ -1,7 +1,5 @@
 import React,{useEffect, useState, useRef} from 'react';
 import {Helmet} from "react-helmet";
-//import { useNavigate } from 'react-router-dom';
-//const navigate = useNavigate();
 
 import './loginBox.css';
 
@@ -42,6 +40,10 @@ export default function LoginBox(props){
             wrapper.classList.remove('active');
             emptyInputs();
         });
+
+
+        console.log("btnLogin in Box: " + props.btnLogin);
+
     })
 
     function closeLoginBox() {
@@ -50,21 +52,24 @@ export default function LoginBox(props){
         props.changeStateBtnLogin(false);
         emptyInputs();
     }
+    
     function passRegisterToLogin(){
         const wrapper = document.querySelector('.wrapper');
         wrapper.classList.remove('active');
     }
+
     function treatmentData(data, dataUser) {
         console.log('message : ' + data.message);
         if (data.message === 'Login successful !') {
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('user', dataUser.email);
             closeLoginBox();
-            props.changeTextLogin(true);
-            props.setCurrentUser(dataUser.email);
         }
         else {
             setDisplayError(data.message);
         }
     }
+
     function emptyInputs() {
         emailLoginInputRef.current.value = '';
         passwordLoginInputRef.current.value = '';

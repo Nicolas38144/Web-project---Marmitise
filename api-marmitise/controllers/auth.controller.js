@@ -49,6 +49,7 @@ const login = (req, res, next) => {
                 }
                 if (result) {
                     let token = jwt.sign({email: user.email}, 'verySecretValue', {expiresIn: '1h'})
+                    //res.cookie('token', token, { httpOnly: true, secure: true })
                     res.json({
                         message: 'Login successful !',
                         token

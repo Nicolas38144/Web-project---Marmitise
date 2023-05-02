@@ -4,11 +4,12 @@
     justify-content: space-between;
     align-items: center;
     z-index: 99;
-    opacity: 0.9;
+    opacity: 0.99;
+    /*background-color: #030303;*/
 }
 
 .navBar .logo {
-    margin: 1% 0% 0% 1%;
+    margin: 0.3% 0% 0.3% 1%;
 }
 
 .navBar .navigation {

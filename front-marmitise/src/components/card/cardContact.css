@@ -1,0 +1,23 @@
+.cardContact {
+    width: 80%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(30px);
+    box-shadow: 0 0 15px rgba(113, 113, 113, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3%;
+    align-items: center;
+    color: white;
+}
+
+.cardContact .title {
+    font-size: 6em;
+    margin-bottom: 4%;
+}
+
+.cardContact .text {
+    font-size: 30px;
+}

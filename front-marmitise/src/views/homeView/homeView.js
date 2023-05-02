@@ -1,13 +1,9 @@
-import React,{useEffect, useState} from 'react';
-
-import NavBar from '../../components/navBar/navBar.js'
-import LoginBox from '../../components/loginBox/loginBox.js'
-
+import React,{useEffect} from 'react';
 import './homeView.css';
 
 
 /*Affiche la vue quand on clique sur Sports dans la section secondaire de la barre de navigation*/
-export default function AccueilView(){
+export default function HomeView(props){
   /*
   const [athlete,setAthlete]=useState(0);
   const [session,setSession]=useState(0);
@@ -57,43 +53,23 @@ export default function AccueilView(){
   }
   */
 
-    const [btnLogin,setBtnLogin]=useState(false);
-    const [isLogged, setIsLogged]=useState(false);
-    const [user, setUser]=useState('');
-
-    function changeStateBtnLogin(result) {
-        setBtnLogin(result);
+    /*function getCookie(name) {
+        const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+        return cookieValue ? cookieValue.pop() : '';
     }
+    const token = getCookie('token');*/
 
-    function changeTextLogin(result) {
-        setIsLogged(result);
-    }
-
-    function setCurrentUser(elem) {
-        setUser(elem);
-    }
+    
 
     useEffect(() => {
-        console.log("btnLogin : " + btnLogin);
-        console.log("isLogged : " + isLogged);
-        console.log("user : " + user);
+        /*
+        console.log("btnLogin : " + props.btnLogin);
+        console.log("user : " + localStorage.getItem('user'));
+        */
     });
 
     return(
         <div className='homeView'>
-            <NavBar className="Router"
-                btnLogin={btnLogin} 
-                changeStateBtnLogin={changeStateBtnLogin} 
-                isLogged={isLogged} 
-                setCurrentUser={setCurrentUser} 
-                changeTextLogin={changeTextLogin} 
-            />
-            <LoginBox className='loginBox'  
-                btnLogin={btnLogin} 
-                changeStateBtnLogin={changeStateBtnLogin} 
-                setCurrentUser={setCurrentUser} 
-                changeTextLogin={changeTextLogin} 
-            />
         </div>
 
     );

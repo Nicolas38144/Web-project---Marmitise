@@ -1,12 +1,5 @@
 .homeView {
     min-height: 100vh;
-    background: url('../../images/fond.jpg') no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-
-.homeView .loginBox {
-    display: flex;
-    justify-content: center;
-    margin-top: 3%;
+    /*display: flex;
+    justify-content: center;*/
 }
