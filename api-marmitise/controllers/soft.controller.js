@@ -16,10 +16,10 @@ const createSoft = async (req, res, next) => {
         });
 
         await newSoft.save();
-        console.log(newSoft);
         res.json({
             message: 'Soft added successfully'
         });
+        console.log(newSoft);
     } 
     catch (error) {
         res.status(500).send({
