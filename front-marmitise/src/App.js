@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import NavBar from './components/navBar/navBar.js';
 import HomeView from './views/homeView/homeView.js'
+import SubmitView from './views/submitView/submitView.js';
 import ContactView from './views/contactView/contactView.js'
 import LoginView from './views/loginView/loginView.js';
 
@@ -42,7 +43,7 @@ function App() {
                     <Route path='/home' exact element={<HomeView />}/>
                     <Route path='/cocktails' exact element={<HomeView />}/>
                     <Route path='/bars' exact element={<HomeView />}/>
-                    <Route path='/submit' exact element={<HomeView />}/>
+                    <Route path='/submit' exact element={<SubmitView isLogged={isLogged} />}/>
                     <Route path='/contact' exact element={<ContactView />}/>
                     <Route path='/login' exact element={<LoginView btnLogin={btnLogin} changeStateBtnLogin={changeStateBtnLogin}/>}/>
                     {/*

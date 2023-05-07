@@ -1,35 +1,52 @@
 const mongoose = require('mongoose');
+const autoIncrement = require('mongoose-auto-increment');
 const Schema = mongoose.Schema;
 
 const cocktailSchema = new Schema({
-  nom: {
-    type: String,
-    required: true
-  },
-  alcool: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Alcool'
-  }],
-  soft: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Soft'
-  }],
-  qt_alc: {
-    type: Number,
-    required: true
-  },
-  qt_soft: {
-    type: Number,
-    required: true
-  }
-}, { timestamps: true });
+    nom: {
+      type: String,
+      required: true
+    },
+    alcools: [{
+        type: Number,
+        ref: 'Alcool'
+      }],
+      softs: [{
+        type: Number,
+        ref: 'Soft'
+      }],
+      ingredients: [{
+        alcool: {
+          type: Number,
+          ref: 'Alcool'
+        },
+        soft: {
+          type: Number,
+          ref: 'Soft'
+        },
+        qt_alc: {
+          type: Number,
+          required: true
+        },
+        qt_soft: {
+          type: Number,
+          required: true
+        }
+      }]
+}, { 
+    timestamps: true,
+    versionKey: false
+});
 
-
-softSchema.virtual('id').get(function() {
-    return this._id.toHexString();
-});  
-softSchema.set('toObject', { virtuals: true });
-softSchema.set('toJSON', { virtuals: true });
+cocktailSchema.plugin(autoIncrement.plugin, {
+    model: 'Cocktail',
+    field: 'id',
+    startAt: 1,
+    incrementBy: 1
+});
+ 
+cocktailSchema.set('toObject', { virtuals: true });
+cocktailSchema.set('toJSON', { virtuals: true });
 
 
 const Cocktail = mongoose.model('Cocktail', cocktailSchema);
