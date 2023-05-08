@@ -84,7 +84,7 @@ const updateSoft = async (req, res) => {
         const softWithNameExists = await Soft.findOne({
             nomSoft: req.body.nomSoft
         });
-        if (softWithNameExists && softWithNameExists.id != req.params.id) {
+        if (softWithNameExists && softWithNameExists.id.toString() !== req.params.id) {
             return res.status(409).send({
                 message: "Soft with name " + req.body.nomSoft + " already exists"
             });

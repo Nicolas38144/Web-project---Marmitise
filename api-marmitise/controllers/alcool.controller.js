@@ -5,7 +5,6 @@ const createAlcool = async (req, res, next) => {
     try {
 
         if (!req.body.nom) {
-            console.log('Le champ est vide');
             return res.status(400).send({
                 message: "Alcool name can not be empty"
             });
@@ -22,7 +21,6 @@ const createAlcool = async (req, res, next) => {
         res.json({
             message: 'Alcool added successfully'
         });
-        console.log(newAlcool);
     } 
     catch (error) {
         res.status(500).send({
@@ -37,7 +35,8 @@ const getAlcools = async (req, res) => {
     try {
         const alcools = await Alcool.find();
         res.send(alcools);
-    } catch (err) {
+    } 
+    catch (err) {
         res.status(500).send({
             message: err.message || "Some error occurred while retrieving alcools."
         });
@@ -79,8 +78,8 @@ const updateAlcool = async (req, res) => {
         // Vérification et mise à jour du nom de l'alcool
         if (req.body.nom) {
             const existingAlcool = await Alcool.findOne({ nom: req.body.nom });
-            if (existingAlcool && existingAlcool.id !== req.params.id) {
-                return res.status(400).send({ message: 'Ce nom est déjà utilisé par un autre alcool' });
+            if (existingAlcool && existingAlcool.id.toString() !== req.params.id) {
+                return res.status(400).send({ message: 'This name is already used by another alcohol' });
             }
             alcool.nom = req.body.nom;
         }
@@ -129,7 +128,8 @@ const deleteAlcool = async (req, res) => {
         res.send({
             message: "Alcool deleted successfully!"
         });
-    } catch (err) {
+    } 
+    catch (err) {
         if (err.kind === 'ObjectId' || err.name === 'NotFound') {
             return res.status(404).send({
                 message: "Alcool not found with id " + req.params.id

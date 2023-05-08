@@ -9,6 +9,7 @@ var cors = require("cors");
 const authRoute = require('./routes/auth.routes');
 const softRouter = require('./routes/soft.routes');
 const alcoolRouter = require('./routes/alcool.routes');
+const barRouter = require('./routes/bar.routes');
 
 
 const uri = "mongodb+srv://Walagaine:98U6RSutNrDIFSeU@cluster0.sigctnl.mongodb.net/?retryWrites=true&w=majority"
@@ -41,6 +42,7 @@ app.use(cors({
 app.use('/api', authRoute);
 app.use('/api/soft', softRouter);
 app.use('/api/alcool', alcoolRouter);
+app.use('/api/bar', barRouter);
 
 
 app.get("/", (req, res) => {
