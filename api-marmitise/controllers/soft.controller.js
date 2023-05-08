@@ -74,6 +74,21 @@ const updateSoft = async (req, res) => {
                 message: "Soft name can not be empty"
             });
         }
+        else if (typeof req.body.nomSoft !== "string" || req.body.nomSoft.trim().length === 0) {
+            return res.status(400).send({
+                message: "Invalid soft name format"
+            });
+        }
+
+        // Check if soft with new name already exists
+        const softWithNameExists = await Soft.findOne({
+            nomSoft: req.body.nomSoft
+        });
+        if (softWithNameExists && softWithNameExists.id != req.params.id) {
+            return res.status(409).send({
+                message: "Soft with name " + req.body.nomSoft + " already exists"
+            });
+        }
 
         // Find soft and update it with the request body
         const soft = await Soft.findByIdAndUpdate(req.params.id, {
@@ -87,8 +102,14 @@ const updateSoft = async (req, res) => {
             });
         }
         res.send(soft);
-    } catch (err) {
-        if (err.kind === 'ObjectId') {
+    } 
+    catch (err) {
+        if (err.name === 'ValidationError') {
+            return res.status(400).send({
+                message: err.message
+            });
+        } 
+        else if (err.kind === 'ObjectId') {
             return res.status(404).send({
                 message: "Soft not found with id " + req.params.id
             });

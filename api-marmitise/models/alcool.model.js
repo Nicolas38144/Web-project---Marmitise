@@ -1,25 +1,47 @@
 const mongoose = require('mongoose');
-const autoIncrement = require('mongoose-auto-increment');
 const Schema = mongoose.Schema;
 
 // Schéma pour la table Alcool
 const alcoolSchema = new Schema({
+    id: {
+        type: mongoose.Schema.Types.ObjectId,
+        unique: true
+    },
     nom: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
-    precision: String,
-    date_fabrication: Date
+    degre: {
+        type: String,
+        required: true,
+        validate: {
+            validator: function(v) {
+                return /^\d+$/.test(v);
+            },
+            message: props => `${props.value} is not a valid integer!`
+        }
+    },
+    precision: {
+        type: String
+    },
+    date_fabrication: {
+        type: Date
+    }
 }, {
   timestamps: true,
   versionKey: false
 });
 
-alcoolSchema.plugin(autoIncrement.plugin, {
-    model: 'Alcool',
-    field: 'id',
-    startAt: 1,
-    incrementBy: 1
+alcoolSchema.pre('save', async function (next) {
+    if (this.isNew) {
+        const lastAlcool = await Alcool.findOne({}, {}, { sort: { 'id': -1 } });
+        const lastId = lastAlcool ? parseInt(lastAlcool.id) : 0;
+        const newID = new mongoose.Types.ObjectId((lastId+1).toString().padStart(24, '0'));
+        this.id = (lastId+1).toString().padStart(24, '0')
+        this._id = newID;
+    }
+    next();
 });
 
 alcoolSchema.set('toObject', { virtuals: true });

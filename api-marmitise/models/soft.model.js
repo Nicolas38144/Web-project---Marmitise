@@ -21,7 +21,6 @@ softSchema.pre('save', async function (next) {
     if (this.isNew) {
         const lastSoft = await Soft.findOne({}, {}, { sort: { 'id': -1 } });
         const lastId = lastSoft ? parseInt(lastSoft.id) : 0;
-        console.log(lastId);
         const newID = new mongoose.Types.ObjectId((lastId+1).toString().padStart(24, '0'));
         this.id = (lastId+1).toString().padStart(24, '0')
         this._id = newID;
