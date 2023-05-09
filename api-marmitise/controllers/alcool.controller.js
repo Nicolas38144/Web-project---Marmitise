@@ -4,9 +4,9 @@ const Alcool = require('../models/alcool.model');
 const createAlcool = async (req, res, next) => {
     try {
 
-        if (!req.body.nom) {
-            return res.status(400).send({
-                message: "Alcool name can not be empty"
+        if (!req.body.nom || !req.body.degre) {
+            return res.status(400).json({
+                message: "Alcool name and alcool degre can not be empty"
             });
         }
 
@@ -23,7 +23,7 @@ const createAlcool = async (req, res, next) => {
         });
     } 
     catch (error) {
-        res.status(500).send({
+        res.status(500).json({
             message: error.message || "Some error occurred while creating the Alcool."
         });
     }
@@ -34,10 +34,10 @@ const createAlcool = async (req, res, next) => {
 const getAlcools = async (req, res) => {
     try {
         const alcools = await Alcool.find();
-        res.send(alcools);
+        res.json(alcools);
     } 
     catch (err) {
-        res.status(500).send({
+        res.status(500).json({
             message: err.message || "Some error occurred while retrieving alcools."
         });
     }
@@ -49,18 +49,18 @@ const getAlcoolById = async (req, res) => {
     try {
         const alcool = await Alcool.findById(req.params.id);
         if (!alcool) {
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Alcool not found with id " + req.params.id
             });
         }
-        res.send(alcool);
+        res.json(alcool);
     } catch (err) {
         if (err.kind === 'ObjectId') {
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Alcool not found with id " + req.params.id
             });
         }
-        return res.status(500).send({
+        return res.status(500).json({
             message: "Error retrieving alcool with id " + req.params.id
         });
     }
@@ -72,23 +72,23 @@ const updateAlcool = async (req, res) => {
     try {
         const alcool = await Alcool.findById(req.params.id);
         if (!alcool) {
-            return res.status(404).send({ message: 'Alcool not found' });
+            return res.status(404).json({ message: 'Alcool not found' });
         }
     
         // Vérification et mise à jour du nom de l'alcool
         if (req.body.nom) {
             const existingAlcool = await Alcool.findOne({ nom: req.body.nom });
             if (existingAlcool && existingAlcool.id.toString() !== req.params.id) {
-                return res.status(400).send({ message: 'This name is already used by another alcohol' });
+                return res.status(400).json({ message: 'This name is already used by another alcohol' });
             }
             alcool.nom = req.body.nom;
         }
     
         // Vérification et mise à jour du degré de l'alcool
         if (req.body.degre) {
-            if (!/^\d+$/.test(req.body.degre)) {
-                return res.status(400).send({ message: 'Degree must be an integer' });
-            }
+            /*if (!/^\d+$/.test(req.body.degre)) {
+                return res.status(400).json({ message: 'Degree must be an integer' });
+            }*/
             alcool.degre = req.body.degre;
         }
     
@@ -101,17 +101,17 @@ const updateAlcool = async (req, res) => {
         if (req.body.date_fabrication) {
             const date = new Date(req.body.date_fabrication);
             if (isNaN(date.getTime())) {
-            return res.status(400).send({ message: 'La date de fabrication doit être une date valide' });
+            return res.status(400).json({ message: 'La date de fabrication doit être une date valide' });
             }
             alcool.date_fabrication = date;
         }
     
         // Enregistrement de l'alcool mis à jour
         const updatedAlcool = await alcool.save();
-        res.send({ message: 'Alcool mis à jour avec succès', alcool: updatedAlcool });
+        res.json({ message: 'Alcool mis à jour avec succès', alcool: updatedAlcool });
     } 
     catch (error) {
-        res.status(500).send({ message: error.message });
+        res.status(500).json({ message: error.message });
     }
 };
 
@@ -121,21 +121,21 @@ const deleteAlcool = async (req, res) => {
     try {
         const alcool = await Alcool.findByIdAndRemove(req.params.id);
         if (!alcool) {
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Alcool not found with id " + req.params.id
             });
         }
-        res.send({
+        res.json({
             message: "Alcool deleted successfully!"
         });
     } 
     catch (err) {
         if (err.kind === 'ObjectId' || err.name === 'NotFound') {
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Alcool not found with id " + req.params.id
             });
         }
-        return res.status(500).send({
+        return res.status(500).json({
             message: "Could not delete alcool with id " + req.params.id
         });
     }

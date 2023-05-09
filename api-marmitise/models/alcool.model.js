@@ -13,14 +13,14 @@ const alcoolSchema = new Schema({
         unique: true
     },
     degre: {
-        type: String,
+        type: Number,
         required: true,
-        validate: {
+        /*validate: {
             validator: function(v) {
                 return /^\d+$/.test(v);
             },
             message: props => `${props.value} is not a valid integer!`
-        }
+        }*/
     },
     precision: {
         type: String

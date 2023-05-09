@@ -4,12 +4,12 @@ const Bar = require('../models/bar.model');
 const createBar = async (req, res) => {
     try {
         if (!req.body.nom || !req.body.localisation) {
-            return res.status(400).send({ message: 'Bar name and localisation can not be empty' });
+            return res.status(400).json({ message: 'Bar name and localisation can not be empty' });
         }
 
         const existingBar = await Bar.findOne({ nom: req.body.nom, localisation : req.body.localisation });
         if (existingBar) {
-            return res.status(409).send({ 
+            return res.status(409).json({ 
                 message: 'A bar with this name and location already exists' 
             });
         }
@@ -21,12 +21,12 @@ const createBar = async (req, res) => {
         });
 
         await bar.save();
-        res.send({
+        res.json({
             message: 'Bar added successfully'
         });
     } 
     catch (err) {
-        res.status(500).send({
+        res.status(500).json({
             message: err.message || "Some error occurred while creating the Bar."
         });
     }
@@ -58,11 +58,11 @@ const getBarById = async (req, res) => {
     } 
     catch (err) {
         if (err.kind === 'ObjectId') {
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Bar not found with id " + req.params.id
             });
         }
-        return res.status(500).send({
+        return res.status(500).json({
             message: "Error retrieving bar with id " + req.params.id
         });
     }
@@ -73,19 +73,19 @@ const updateBar = async (req, res) => {
     try {
 
         if (!req.body.nom || !req.body.localisation) {
-            return res.status(400).send({ message: 'Bar name and location can not be empty' });
+            return res.status(400).json({ message: 'Bar name and location can not be empty' });
         }
 
         const existingBar = await Bar.findOne({ nom: req.body.nom, localisation : req.body.localisation });
         if (existingBar && (existingBar.id.toString() !== req.params.id)) {
-            return res.status(409).send({ 
+            return res.status(409).json({ 
                 message: 'A bar with this name and location already exists' 
             });
         }
 
         const bar = await Bar.findById(req.params.id);
         if (!bar) {
-            return res.status(404).send({ message: 'Bar not found' });
+            return res.status(404).json({ message: 'Bar not found' });
         }
     
         bar.nom = req.body.nom;
@@ -93,12 +93,12 @@ const updateBar = async (req, res) => {
         bar.cocktails = req.body.cocktails;
 
         const updatedBar = await bar.save();
-        res.send({ 
+        res.json({ 
             message: 'Bar mis à jour avec succès', bar: updatedBar
         });
     } 
     catch (error) {
-        res.status(500).send({ message: error.message });
+        res.status(500).json({ message: error.message });
     }
 };
 
@@ -107,21 +107,21 @@ const deleteBar = async (req, res) => {
     try {
         const bar = await Bar.findByIdAndRemove(req.params.id);
         if (!bar) {
-            return res.status(404).send({ 
+            return res.status(404).json({ 
                 message: 'Bar not found with id ' + req.params.id
             });
         }
-        res.send({
+        res.json({
             message: "Bar deleted successfully!"
         });
     } 
     catch (err) {
         if (err.kind === 'ObjectId' || err.name === 'NotFound') {
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Bar not found with id " + req.params.id
             });
         }
-        return res.status(500).send({
+        return res.status(500).json({
             message: "Could not delete bar with id " + req.params.id
         });
     }
