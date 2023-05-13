@@ -29,6 +29,16 @@ const softSchema = new Schema({
     _id: false
 });
 
+const ingredientSchema = new Schema({
+    ingredient: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Ingredient',
+        required: true
+    }
+}, {
+    _id: false
+});
+
 const cocktailSchema = new Schema({
     id: {
         type: mongoose.Schema.Types.ObjectId,
@@ -40,7 +50,8 @@ const cocktailSchema = new Schema({
         unique: true
     },
     alcools: [alcoolSchema],
-    softs: [softSchema]
+    softs: [softSchema],
+    ingredients: [ingredientSchema]
 }, {
     timestamps: true,
     versionKey: false

@@ -1,6 +1,7 @@
 const Cocktail = require('../models/cocktail.model');
 const Alcool = require('../models/alcool.model');
 const Soft = require('../models/soft.model');
+const Ingredient = require('../models/ingredient.model');
 
 
 // CREATE
@@ -47,10 +48,20 @@ const createCocktail = async (req, res) => {
             }
         }
 
+        for (const ingredient of req.body.ingredients) {
+            const alcoolExist = await Ingredient.findById(ingredient.ingredient);
+            if (!alcoolExist) {
+                return res.status(404).json({ 
+                    message: "L'ingredient "+ ingredient.ingredient +" n'existe pas." 
+                });
+            }
+        }
+
         const newCocktail = new Cocktail({
             nom: req.body.nom,
             alcools: req.body.alcools,
             softs: req.body.softs,
+            ingredients: req.body.ingredients
         });
 
         await newCocktail.save();
@@ -109,67 +120,96 @@ const getCocktailById = async (req, res) => {
 // UPDATE
 const updateCocktail = async (req, res) => {
     try {
-      const { id } = req.params;
-      const cocktail = await Cocktail.findById(id);
-  
-      if (!cocktail) {
-        return res.status(404).json({ message: 'Cocktail not found' });
-      }
-  
-      const { nom, alcools, softs } = req.body;
-  
-      // Vérification du nom du cocktail
-      if (nom && nom.trim() !== '') {
-        cocktail.nom = nom.trim();
-      } else {
-        return res.status(400).json({ message: 'Invalid cocktail name' });
-      }
-  
-      // Vérification des alcools
-      if (alcools && Array.isArray(alcools)) {
-        for (const alcool of alcools) {
-          if (alcool.alcool && alcool.qt_alc) {
-            const alcoolExist = await Alcool.findById(alcool.alcool);
-            if (!alcoolExist) {
-              return res.status(400).json({ message: 'Invalid alcohol' });
-            }
-          } else {
-            return res.status(400).json({ message: 'Invalid alcohol quantity' });
-          }
+        const { id } = req.params;
+        const cocktail = await Cocktail.findById(id);
+    
+        if (!cocktail) {
+            return res.status(404).json({ message: 'Cocktail not found' });
         }
-        cocktail.alcools = alcools;
-      } else if (alcools === undefined) {
-        // Si alcools n'est pas défini dans la requête, on ne modifie pas le champ
-      } else {
-        return res.status(400).json({ message: 'Invalid alcohol format' });
-      }
-  
-      // Vérification des softs
-      if (softs && Array.isArray(softs)) {
-        for (const soft of softs) {
-          if (soft.soft && soft.qt_soft) {
-            const softExist = await Soft.findById(soft.soft);
-            if (!softExist) {
-              return res.status(400).json({ message: 'Invalid soft' });
-            }
-          } else {
-            return res.status(400).json({ message: 'Invalid soft quantity' });
-          }
+    
+        const { nom, alcools, softs, ingredients } = req.body;
+    
+        // Vérification du nom du cocktail
+        if (nom && nom.trim() !== '') {
+            cocktail.nom = nom.trim();
+        } else {
+            return res.status(400).json({ message: 'Invalid cocktail name' });
         }
-        cocktail.softs = softs;
-      } else if (softs === undefined) {
-        // Si softs n'est pas défini dans la requête, on ne modifie pas le champ
-      } else {
-        return res.status(400).json({ message: 'Invalid soft format' });
-      }
-  
-      // Sauvegarde du cocktail
-      const updatedCocktail = await cocktail.save();
-      res.json(updatedCocktail);
-    } catch (err) {
-      res.status(500).json({ message: err.message });
+    
+        // Vérification des alcools
+        if (alcools && Array.isArray(alcools)) {
+            for (const alcool of alcools) {
+                if (alcool.alcool && alcool.qt_alc) {
+                    const alcoolExist = await Alcool.findById(alcool.alcool);
+                    if (!alcoolExist) {
+                        return res.status(400).json({ message: 'Invalid alcohol' });
+                    }
+                } 
+                if (alcool.qt_alcool && Number.isNaN(Number(alcool.qt_alcool)) || Number(alcool.qt_alcool) <= 0) {
+                    return res.status(400).json({ message: 'Invalid alcohol quantity' });
+                }
+            }
+            cocktail.alcools = alcools;
+        } 
+        else if (alcools === undefined) {
+            // Si alcools n'est pas défini dans la requête, on ne modifie pas le champ
+        } 
+        else {
+            return res.status(400).json({ message: 'Invalid alcohol format' });
+        }
+    
+        // Vérification des softs
+        if (softs && Array.isArray(softs)) {
+            for (const soft of softs) {
+                if (soft.soft) {
+                    const softExist = await Soft.findById(soft.soft);
+                    if (!softExist) {
+                        return res.status(400).json({ message: 'Invalid soft' });
+                    }
+                } 
+                if (soft.qt_soft && Number.isNaN(Number(soft.qt_soft)) || Number(soft.qt_soft) <= 0) {
+                    return res.status(400).json({ message: 'Invalid soft quantity' });
+                }
+            }
+            cocktail.softs = softs;
+        } 
+        else if (softs === undefined) {
+            // Si softs n'est pas défini dans la requête, on ne modifie pas le champ
+        } 
+        else {
+            return res.status(400).json({ message: 'Invalid soft format' });
+        }
+
+        // Vérification des ingredient
+        if (ingredients && Array.isArray(ingredients)) {
+            for (const ingredient of ingredients) {
+                if (ingredient.ingredient) {
+                    const ingredientExist = await Soft.findById(ingredient.ingredient);
+                    if (!ingredientExist) {
+                        return res.status(400).json({ message: 'Invalid ingredient' });
+                    }
+                } 
+                else {
+                    return res.status(400).json({ message: 'Invalid soft quantity' });
+                }
+            }
+            cocktail.ingredients = ingredients;
+        } 
+        else if (ingredients === undefined) {
+            // Si ingredients n'est pas défini dans la requête, on ne modifie pas le champ
+        } 
+        else {
+            return res.status(400).json({ message: 'Invalid ingredient format' });
+        }
+    
+        // Sauvegarde du cocktail
+        const updatedCocktail = await cocktail.save();
+        res.json(updatedCocktail);
+    } 
+    catch (err) {
+        res.status(500).json({ message: err.message });
     }
-  };
+};
   
 
 

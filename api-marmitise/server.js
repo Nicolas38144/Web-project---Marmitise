@@ -9,6 +9,7 @@ var cors = require("cors");
 const authRoute = require('./routes/auth.routes');
 const softRouter = require('./routes/soft.routes');
 const alcoolRouter = require('./routes/alcool.routes');
+const ingredientRouter = require('./routes/ingredient.routes');
 const barRouter = require('./routes/bar.routes');
 const cocktailRouter = require('./routes/cocktail.routes');
 
@@ -43,8 +44,10 @@ app.use(cors({
 app.use('/api', authRoute);
 app.use('/api/soft', softRouter);
 app.use('/api/alcool', alcoolRouter);
+app.use('/api/ingredient', ingredientRouter);
 app.use('/api/bar', barRouter);
 app.use('/api/cocktail', cocktailRouter);
+
 
 
 
