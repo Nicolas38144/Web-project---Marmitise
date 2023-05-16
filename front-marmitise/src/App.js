@@ -6,6 +6,7 @@ import HomeView from './views/homeView/homeView.js'
 import SubmitView from './views/submitView/submitView.js';
 import ContactView from './views/contactView/contactView.js'
 import LoginView from './views/loginView/loginView.js';
+import CocktailsView from './views/cocktailsView/cocktailsView.js'
 
 
 import './App.css';
@@ -41,7 +42,7 @@ function App() {
                     <Route path="*" element={<h1>404: page not found</h1>}/>
                     <Route path='/' exact element={<HomeView />}/>
                     <Route path='/home' exact element={<HomeView />}/>
-                    <Route path='/cocktails' exact element={<HomeView />}/>
+                    <Route path='/cocktails' exact element={<CocktailsView />}/>
                     <Route path='/bars' exact element={<HomeView />}/>
                     <Route path='/submit' exact element={<SubmitView isLogged={isLogged} />}/>
                     <Route path='/contact' exact element={<ContactView />}/>

@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const bodyparser = require("body-parser");
 const cookieParser = require("cookie-parser");
 var cors = require("cors");
+require('dotenv').config();
 
 
 const authRoute = require('./routes/auth.routes');
@@ -13,8 +14,9 @@ const ingredientRouter = require('./routes/ingredient.routes');
 const barRouter = require('./routes/bar.routes');
 const cocktailRouter = require('./routes/cocktail.routes');
 
+const password_MongoDB = process.env.PASSWORD_MONGODB;
+const uri = "mongodb+srv://"+password_MongoDB+"@cluster0.sigctnl.mongodb.net/?retryWrites=true&w=majority"
 
-const uri = "mongodb+srv://Walagaine:98U6RSutNrDIFSeU@cluster0.sigctnl.mongodb.net/?retryWrites=true&w=majority"
 async function connect() {
     try {
         mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
