@@ -15,7 +15,7 @@ const barRouter = require('./routes/bar.routes');
 const cocktailRouter = require('./routes/cocktail.routes');
 
 const password_MongoDB = process.env.PASSWORD_MONGODB;
-const uri = "mongodb+srv://"+password_MongoDB+"@cluster0.sigctnl.mongodb.net/?retryWrites=true&w=majority"
+const uri = "mongodb+srv://"+password_MongoDB+"@cluster0.ob2ppqx.mongodb.net/?retryWrites=true&w=majority"
 
 async function connect() {
     try {
