@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const alcoolSchema = new Schema({
-    alcool: {
+    id_alcool: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Alcool',
         required: true
@@ -16,7 +16,7 @@ const alcoolSchema = new Schema({
 });
 
 const softSchema = new Schema({
-    soft: {
+    id_soft: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Soft',
         required: true
@@ -30,7 +30,7 @@ const softSchema = new Schema({
 });
 
 const ingredientSchema = new Schema({
-    ingredient: {
+    id_ingredient: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Ingredient',
         required: true

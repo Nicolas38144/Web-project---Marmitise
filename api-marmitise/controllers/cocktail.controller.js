@@ -26,10 +26,10 @@ const createCocktail = async (req, res) => {
                     message: "La quantité d'alcool doit être un nombre supérieur à zéro." 
                 });
             }
-            const alcoolExist = await Alcool.findById(alcool.alcool);
+            const alcoolExist = await Alcool.findById(alcool.id_alcool);
             if (!alcoolExist) {
                 return res.status(404).json({ 
-                    message: "L'alcool "+ alcool.alcool +" n'existe pas." 
+                    message: "L'alcool "+ alcool.id_alcool +" n'existe pas." 
                 });
             }
         }
@@ -40,19 +40,19 @@ const createCocktail = async (req, res) => {
                     message: "La quantité de soft doit être un nombre supérieur à zéro." 
                 });
             }
-            const softExist = await Soft.findById(soft.soft);
+            const softExist = await Soft.findById(soft.id_soft);
             if (!softExist) {
                 return res.status(404).json({ 
-                    message: "Le soft "+ soft.soft +" n'existe pas." 
+                    message: "Le soft "+ soft.id_soft +" n'existe pas." 
                 });
             }
         }
 
         for (const ingredient of req.body.ingredients) {
-            const alcoolExist = await Ingredient.findById(ingredient.ingredient);
+            const alcoolExist = await Ingredient.findById(ingredient.id_ingredient);
             if (!alcoolExist) {
                 return res.status(404).json({ 
-                    message: "L'ingredient "+ ingredient.ingredient +" n'existe pas." 
+                    message: "L'ingredient "+ ingredient.id_ingredient +" n'existe pas." 
                 });
             }
         }
@@ -139,8 +139,8 @@ const updateCocktail = async (req, res) => {
         // Vérification des alcools
         if (alcools && Array.isArray(alcools)) {
             for (const alcool of alcools) {
-                if (alcool.alcool && alcool.qt_alc) {
-                    const alcoolExist = await Alcool.findById(alcool.alcool);
+                if (alcool.id_alcool && alcool.qt_alc) {
+                    const alcoolExist = await Alcool.findById(alcool.id_alcool);
                     if (!alcoolExist) {
                         return res.status(400).json({ message: 'Invalid alcohol' });
                     }
@@ -161,8 +161,8 @@ const updateCocktail = async (req, res) => {
         // Vérification des softs
         if (softs && Array.isArray(softs)) {
             for (const soft of softs) {
-                if (soft.soft) {
-                    const softExist = await Soft.findById(soft.soft);
+                if (soft.id_soft) {
+                    const softExist = await Soft.findById(soft.id_soft);
                     if (!softExist) {
                         return res.status(400).json({ message: 'Invalid soft' });
                     }
@@ -183,8 +183,8 @@ const updateCocktail = async (req, res) => {
         // Vérification des ingredient
         if (ingredients && Array.isArray(ingredients)) {
             for (const ingredient of ingredients) {
-                if (ingredient.ingredient) {
-                    const ingredientExist = await Soft.findById(ingredient.ingredient);
+                if (ingredient.id_ingredient) {
+                    const ingredientExist = await Soft.findById(ingredient.id_ingredient);
                     if (!ingredientExist) {
                         return res.status(400).json({ message: 'Invalid ingredient' });
                     }

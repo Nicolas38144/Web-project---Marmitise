@@ -1,5 +1,5 @@
 .cardCocktail {
-    width: 30%;
+    min-width: 500px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .5);
     border-radius: 20px;
@@ -15,9 +15,10 @@
 
 .cardCocktail .name {
     font-size: 3em;
-    margin-bottom: 4%;
+    margin-bottom: 3%;
 }
 
-.cardcardCocktail .text {
+.cardcardCocktail .alcoolInfo {
     font-size: 30px;
+    color: white;
 }

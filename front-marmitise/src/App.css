@@ -5,17 +5,25 @@
     font-family: 'Poppins', sans-serif;
 }
 
-
 .App {
     min-height: 100vh;
-    background: url('./images/fond.jpg') no-repeat;
-    background-size: cover;
-    background-position: center;
+}
+
+.App .background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
 }
 
 .App .navBar {
     position: sticky;
     top: 0;
+    left: 0;
     z-index: 1;
     backdrop-filter: blur(5px);
+    margin-bottom: 3%;
 }

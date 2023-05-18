@@ -8,7 +8,6 @@ export default function NavBar(props){
 
     useEffect(() => {
         props.changeIsLogged();
-        console.log(props.isLogged);
     })
     const navigate = useNavigate();
 

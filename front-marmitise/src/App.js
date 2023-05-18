@@ -1,4 +1,4 @@
-import React, {useState} from 'react'; /*,{useEffect, useState}*/
+import React, {useState, useEffect} from 'react'; /*,{useEffect, useState}*/
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import NavBar from './components/navBar/navBar.js';
@@ -8,10 +8,23 @@ import ContactView from './views/contactView/contactView.js'
 import LoginView from './views/loginView/loginView.js';
 import CocktailsView from './views/cocktailsView/cocktailsView.js'
 
+import ImageFond from './images/fond.jpg'
+
 
 import './App.css';
 
 function App() {
+    useEffect(() => {
+        const handleBeforeUnload = (event) => {
+            event.preventDefault();
+            localStorage.clear();
+        };
+        window.addEventListener('beforeunload', handleBeforeUnload);
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    }, []);
+
 
     const [btnLogin,setBtnLogin]=useState(false);
     const [isLogged,setIsLogged]=useState(false);
@@ -32,6 +45,7 @@ function App() {
     return (
         <div className="App">
             <Router>
+                <img className="background" src={ImageFond} alt="Image de fond"></img>
                 <NavBar className="navBar" 
                     btnLogin={btnLogin} 
                     changeStateBtnLogin={changeStateBtnLogin} 

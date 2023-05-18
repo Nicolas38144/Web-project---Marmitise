@@ -26,20 +26,27 @@ export default function CocktailsView(){
                         cocktailsArray.push({...cocktail});
                     }
                     setCocktails(cocktailsArray);
+                    localStorage.setItem('cocktails', JSON.stringify(cocktailsArray));
                 })
                 .catch((err) => {
                     console.log(err);
                 })
             })
         }
-        getCocktails();
+
+        const storedCocktailsData = localStorage.getItem('cocktails');
+        if (!storedCocktailsData) {
+            getCocktails();
+        }
+        else {
+            setCocktails(JSON.parse(storedCocktailsData));
+        }
     },[]);
 
-    console.log("cocktails : ",cocktails[0]);
     return(
         <div className='cocktailsView'>
             {cocktails.map((cocktail) => (
-                <CardCocktail 
+                <CardCocktail className='card'
                     key={cocktail.key} 
                     id={cocktail.id}
                     name={cocktail.name} 
@@ -49,6 +56,5 @@ export default function CocktailsView(){
                 />
             ))}
         </div>
-
     );
 }
