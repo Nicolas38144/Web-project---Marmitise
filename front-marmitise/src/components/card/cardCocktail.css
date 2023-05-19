@@ -7,18 +7,69 @@
     box-shadow: 0 0 15px rgba(113, 113, 113, 0.5);
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: 1%;
-    align-items: center;
+    
+    padding: 2% 1% 1% 1%;
+    /*justify-content: center;*/
+    /*align-items: center;*/
     color: white;
 }
 
 .cardCocktail .name {
     font-size: 3em;
     margin-bottom: 3%;
+    text-align: center;
 }
 
-.cardcardCocktail .alcoolInfo {
-    font-size: 30px;
-    color: white;
+.cardCocktail .type {
+    font-size: 1em;
+    margin-bottom: 3%;
+    text-align: center;
+}
+
+.cardCocktail .alcohols,.softs,.ingredients {
+    margin-left: 25%;
+    margin-right: 20%;
+}
+
+.cardCocktail .in-boxlInfo {
+    display: flex;
+    align-items: center;
+}
+
+.cardCocktail .in-boxlInfo hr {
+    width: 100%;
+    border: none;
+    border-top: 2px dashed #fff;
+    margin: 0 10px;
+}
+
+@media screen and (max-width: 1040px) {
+    .cardCocktail {
+        min-width: 450px;
+    }
+    .cardCocktail .alcohols,.softs,.ingredients {
+        margin-left: 22%;
+    }
+}
+
+@media screen and (max-width: 925px) {
+    .cardCocktail {
+        min-width: 400px;
+    }
+    .cardCocktail .alcohols,.softs,.ingredients {
+        margin-left: 20%;
+    }
+}
+
+
+@media screen and (max-width: 560px) {
+    .cardCocktail {
+        min-width: 350px;
+    }
+    .cardCocktail .name {
+        font-size: 2em;
+    }
+    .cardCocktail .alcohols,.softs,.ingredients {
+        margin-left: 12%;
+    }
 }

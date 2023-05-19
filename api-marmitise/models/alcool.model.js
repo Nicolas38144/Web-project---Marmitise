@@ -15,18 +15,12 @@ const alcoolSchema = new Schema({
     degre: {
         type: Number,
         required: true,
-        /*validate: {
-            validator: function(v) {
-                return /^\d+$/.test(v);
-            },
-            message: props => `${props.value} is not a valid integer!`
-        }*/
     },
     precision: {
         type: String
     },
     date_fabrication: {
-        type: Date
+        type: Number
     }
 }, {
   timestamps: true,

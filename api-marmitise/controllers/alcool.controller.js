@@ -10,6 +10,13 @@ const createAlcool = async (req, res, next) => {
             });
         }
 
+        const currentYear = new Date().getFullYear();
+        if (req.body.date_fabrication < 1850 || req.body.date_fabrication > currentYear) {
+            return res.status(400).json({
+                message: "the year of manufacture of this alcohol is impossible"
+            });
+        }
+
         const newAlcool = new Alcool({
             nom: req.body.nom,
             degre: req.body.degre,
@@ -85,10 +92,7 @@ const updateAlcool = async (req, res) => {
         }
     
         // Vérification et mise à jour du degré de l'alcool
-        if (req.body.degre) {
-            /*if (!/^\d+$/.test(req.body.degre)) {
-                return res.status(400).json({ message: 'Degree must be an integer' });
-            }*/
+        if (req.body.degre && req.body.degre > 0) {
             alcool.degre = req.body.degre;
         }
     
@@ -99,11 +103,13 @@ const updateAlcool = async (req, res) => {
     
         // Vérification et mise à jour de la date de fabrication de l'alcool
         if (req.body.date_fabrication) {
-            const date = new Date(req.body.date_fabrication);
-            if (isNaN(date.getTime())) {
-            return res.status(400).json({ message: 'La date de fabrication doit être une date valide' });
+            const currentYear = new Date().getFullYear();
+            if (req.body.date_fabrication < 1850 || req.body.date_fabrication > currentYear) {
+                return res.status(400).json({
+                    message: "the year of manufacture of this alcohol is impossible"
+                });
             }
-            alcool.date_fabrication = date;
+            alcool.date_fabrication = req.body.date_fabrication;
         }
     
         // Enregistrement de l'alcool mis à jour

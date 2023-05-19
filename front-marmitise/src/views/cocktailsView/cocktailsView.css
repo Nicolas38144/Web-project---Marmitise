@@ -1,6 +1,13 @@
 .cocktailsView {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
-    grid-gap: 20px;
+    grid-row-gap: 80px;
     justify-items: center;
+}
+
+@media screen and (max-width: 840px) {
+    .cocktailsView {
+        grid-template-columns: 1fr;
+        grid-row-gap: 50px;
+    }
 }
