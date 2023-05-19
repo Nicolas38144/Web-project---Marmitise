@@ -6,10 +6,10 @@ import './submitView.css'
 
 
 /*Affiche la vue quand on clique sur Sports dans la section secondaire de la barre de navigation*/
-export default function  SubmitView(props){
+export default function SubmitView(props){
     useEffect(() => {
         props.changeUrl(window.location.href);
-    });
+    },[]);
 
     return(
         <div className='submitView'>

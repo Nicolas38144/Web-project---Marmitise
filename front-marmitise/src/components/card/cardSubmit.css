@@ -27,9 +27,18 @@
     box-shadow: 0 0 15px rgba(113, 113, 113, 0.5);
     display: flex;
     flex-direction: column;
-    justify-content: center;
     padding: 3%;
-    align-items: center;  
     font-size: 30px;
-    text-align: center;  
+}
+
+.cardSubmit-login .title {
+    margin-bottom: 3%;
+}
+
+.cardSubmit-login .title,.title_bis {
+    text-align: center;
+}
+  
+.cardSubmit-login .title_bis {
+    margin-bottom: 3%;
 }

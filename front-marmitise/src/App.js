@@ -19,10 +19,10 @@ function App() {
             event.preventDefault();
             localStorage.clear();
         };
-        window.addEventListener('beforeunload', handleBeforeUnload);
+        /*window.addEventListener('beforeunload', handleBeforeUnload);
         return () => {
             window.removeEventListener('beforeunload', handleBeforeUnload);
-        };
+        };*/
     }, []);
 
 

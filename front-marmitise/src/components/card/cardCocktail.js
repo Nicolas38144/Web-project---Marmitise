@@ -48,7 +48,6 @@ export default function CardCocktail(props){
         }
 
         const getSofts = (softObjects) => {
-            console.log("hello");
             const promises = softObjects.map((softObject) => {
                 return fetch('http://localhost:8000/api/soft/' + softObject.id_soft, {})
                 .then((response) => response.json())
