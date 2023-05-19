@@ -15,7 +15,11 @@ export default function NavBar(props){
         localStorage.setItem('user', '');
         localStorage.setItem('token', '');
         props.changeStateBtnLogin(false);
-        navigate('/home');
+
+        const url = window.location.href;
+        const parts = url.split('/');
+        const lastPart = parts[parts.length - 1];
+        navigate('/'+lastPart);
     }
 
     function logIn() {

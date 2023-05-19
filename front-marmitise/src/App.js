@@ -28,6 +28,7 @@ function App() {
 
     const [btnLogin,setBtnLogin]=useState(false);
     const [isLogged,setIsLogged]=useState(false);
+    const [url,setUrl]=useState("");
 
     function changeStateBtnLogin(result) {
         setBtnLogin(result);
@@ -40,6 +41,12 @@ function App() {
         else {
             setIsLogged(true);
         }
+    }
+
+    function changeUrl(full_url) {
+        const parts = full_url.split('/');
+        const lastPart = parts[parts.length - 1];
+        setUrl('/'+lastPart);
     }
     
     return (
@@ -54,13 +61,13 @@ function App() {
                 </NavBar>
                 <Routes>
                     <Route path="*" element={<h1>404: page not found</h1>}/>
-                    <Route path='/' exact element={<HomeView />}/>
-                    <Route path='/home' exact element={<HomeView />}/>
-                    <Route path='/cocktails' exact element={<CocktailsView />}/>
-                    <Route path='/bars' exact element={<HomeView />}/>
-                    <Route path='/submit' exact element={<SubmitView isLogged={isLogged} />}/>
-                    <Route path='/contact' exact element={<ContactView />}/>
-                    <Route path='/login' exact element={<LoginView btnLogin={btnLogin} changeStateBtnLogin={changeStateBtnLogin}/>}/>
+                    <Route path='/' exact element={<HomeView changeUrl={changeUrl}/>}/>
+                    <Route path='/home' exact element={<HomeView changeUrl={changeUrl} />}/>
+                    <Route path='/cocktails' exact element={<CocktailsView changeUrl={changeUrl} />}/>
+                    <Route path='/bars' exact element={<HomeView changeUrl={changeUrl} />}/>
+                    <Route path='/submit' exact element={<SubmitView changeUrl={changeUrl} isLogged={isLogged} />}/>
+                    <Route path='/contact' exact element={<ContactView changeUrl={changeUrl} />}/>
+                    <Route path='/login' exact element={<LoginView url={url} btnLogin={btnLogin} changeStateBtnLogin={changeStateBtnLogin} />}/>
                     {/*
                     <Route path={"/Sessions/:id"} exact element={<InfoViewSession />} />
                     <Route path={'/Sessions'} exact element={<SessionView />} />

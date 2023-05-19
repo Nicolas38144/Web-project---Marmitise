@@ -6,14 +6,13 @@ import LoginBox from '../../components/loginBox/loginBox.js'
 import './loginView.css';
 
 
-/*Affiche la vue quand on clique sur Sports dans la section secondaire de la barre de navigation*/
 export default function LoginView(props){
     
     const navigate = useNavigate();
     
     useEffect(() => {
         if (props.btnLogin === false) {
-            setTimeout(navigate("/home"),500);
+            setTimeout(navigate(props.url),500);
         }
     });
 

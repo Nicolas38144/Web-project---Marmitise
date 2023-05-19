@@ -13,6 +13,7 @@ export default function HomeView(props){
     
 
     useEffect(() => {
+        props.changeUrl(window.location.href);
         /*
         console.log("btnLogin : " + props.btnLogin);
         console.log("user : " + localStorage.getItem('user'));

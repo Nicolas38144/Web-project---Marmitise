@@ -4,11 +4,14 @@ import './cocktailsView.css';
 import CardCocktail from '../../components/card/cardCocktail'
 
 
-export default function CocktailsView(){    
+export default function CocktailsView(props){    
 
     const [cocktails,setCocktails]=useState([]);
 
     useEffect(() => {
+
+        props.changeUrl(window.location.href);
+
         /*permet de récuperer toutes les information de tous les cocktails et de les mettre dans un tableau*/
         const getCocktails= ()=> {
             var cocktailsArray = [];
