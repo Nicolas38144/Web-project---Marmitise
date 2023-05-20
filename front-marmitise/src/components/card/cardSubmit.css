@@ -19,7 +19,7 @@
 }
 
 .cardSubmit-login {
-    width: 80%;
+    width: 70%;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .5);
     border-radius: 20px;
@@ -27,18 +27,85 @@
     box-shadow: 0 0 15px rgba(113, 113, 113, 0.5);
     display: flex;
     flex-direction: column;
-    padding: 3%;
+    padding: 3% 7%;
     font-size: 30px;
 }
 
 .cardSubmit-login .title {
     margin-bottom: 3%;
-}
-
-.cardSubmit-login .title,.title_bis {
     text-align: center;
 }
-  
-.cardSubmit-login .title_bis {
-    margin-bottom: 3%;
+
+.cardSubmit-login .inputNameCocktail {
+    width: 50%;
+    margin: 2% auto 7% auto;
+    height: 40px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.cardSubmit-login .other_p {
+    font-size: 22px;
+}
+
+/**************************** Début pour gérer les Tab ****************************/
+.cardSubmit-login .custom-tabs {
+    /*border-bottom: none; */
+}
+
+.cardSubmit-login .custom-tab-list {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px; 
+    list-style-type: none;
+    margin-bottom: 4%;
+}
+
+.cardSubmit-login .custom-tab {
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+/**************************** Fin pour gérer les Tab ****************************/
+
+.cardSubmit-login .alcoolInfo .in-boxlInfo > div {
+    display: flex;
+    align-items: center;
+}
+.cardSubmit-login .ingredientInfo .in-boxlInfo{
+    display: flex; 
+    align-items: center; 
+}
+.cardSubmit-login .softInfo .in-boxlInfo{
+    display: flex;
+    align-items: center;
+}
+
+.cardSubmit-login .in-boxlInfo hr {
+    width: 100%;
+    border: none;
+    border-top: 2px dashed #fff;
+    margin: 0 10px;
+}
+
+.cardSubmit-login .in-boxlInfo input {
+    color: black;
+    text-align: center; 
+    font-size: 24px;
+}
+
+.cardSubmit-login .in-boxlInfo .checkbox {
+    transform: scale(3);
+    margin-left: 1%;
+} 
+
+
+/**************************** Bouton submit ****************************/
+.cardSubmit-login .btn_submit {
+    width: 50%;
+    margin: 0% auto;
+    height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #fff;
 }
