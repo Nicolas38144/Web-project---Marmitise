@@ -17,7 +17,11 @@ function App() {
     useEffect(() => {
         const handleBeforeUnload = (event) => {
             event.preventDefault();
-            localStorage.clear();
+            localStorage.setItem('alcohols', '');
+            localStorage.setItem('cocktails', '');
+            localStorage.setItem('ingredients', '');
+            localStorage.setItem('softs', '');
+            //localStorage.clear();
         };
         window.addEventListener('beforeunload', handleBeforeUnload);
         return () => {

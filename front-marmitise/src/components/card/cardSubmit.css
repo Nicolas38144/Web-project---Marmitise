@@ -49,9 +49,8 @@
 }
 
 /**************************** Début pour gérer les Tab ****************************/
-.cardSubmit-login .custom-tabs {
-    /*border-bottom: none; */
-}
+/*.cardSubmit-login .custom-tabs {
+}*/
 
 .cardSubmit-login .custom-tab-list {
     display: flex;

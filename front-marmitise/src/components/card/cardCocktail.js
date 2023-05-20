@@ -10,7 +10,6 @@ export default function CardCocktail(props){
 
     useEffect(()=>{
         const getAlcohols = (alcoolObjects) => {
-            console.log(alcoolObjects);
             const promises = alcoolObjects.map((alcoolObject) => {
                 return fetch('http://localhost:8000/api/alcool/' + alcoolObject.id_alcool, {})
                 .then((response) => response.json())
@@ -22,7 +21,7 @@ export default function CardCocktail(props){
                         degre: data.degre,
                         precision: data.precision,
                         date_fabrication: data.date_fabrication,
-                        qt_alc: alcoolObject.qt_alc
+                        //qt_alc: alcoolObject.qt_alc
                     };
                 })
                 .catch((err) => {
@@ -126,21 +125,34 @@ export default function CardCocktail(props){
         }
     },[]);
     
-
+    const filteredAlcohols = alcohols.filter((alcool) =>
+        props.alcools.some((alcoolObject) => alcoolObject.id_alcool === alcool.id)
+    );
+    const filteredSofts = softs.filter((soft) => 
+        props.softs.some((softObject) => softObject.id_soft === soft.id)
+    );
+    const filteredIngredients = ingredients.filter((ingredient) =>
+        props.ingredients.some((ingredientObject) => ingredientObject.id_ingredient === ingredient.id)
+    );
     return(
         <> 
         <div className='cardCocktail'>
             <p className='name'>{props.name}</p>
-            <p className='type'>ALCOHOL(S)</p>
-            <div className='alcohols'>
-                {alcohols.map((alcool, index) => {
+            
+            <div className='alcohols'>                
+                {filteredAlcohols.length > 0 && (
+                    <p className='type'>ALCOHOL(S)</p>
+                )}
+                {filteredAlcohols.map((alcool, index) => {
+                    const matchingAlcool = props.alcools.find((alcoolObject) => alcoolObject.id_alcool === alcool.id);
+                    const quantity = matchingAlcool ? matchingAlcool.qt_alc : "";
                     return (
                         <div key={alcool.key}>
                             <div className='alcoolInfo'>
                                 <div className='in-boxlInfo'>
                                     <p>{alcool.name}</p>
                                     <hr/>
-                                    <p>{alcool.qt_alc}cl</p>
+                                    <p>{quantity}cl</p>
                                 </div>
                                 <p>
                                     <span>{alcool.degre}%</span>
@@ -152,39 +164,46 @@ export default function CardCocktail(props){
                                     <p>About: {alcool.precision}</p>
                                 )}
                             </div>
-                            {index !== alcohols.length && <br />} 
-                            {/* Ajoute un séparateur uniquement si ce n'est pas le dernier élément */}
+                            {index !== filteredAlcohols.length && <br />} 
                         </div>
                     );
                 })}
             </div>
-            <p className='type'>SOFT(S)</p>
+            
             <div className='softs'>
-                {softs.map((soft, index) => {
+                {filteredSofts.length > 0 && (
+                    <p className='type'>SOFT(S)</p>
+                )}
+                {filteredSofts.map((soft, index) => {
+                    const matchingSoft = props.softs.find((softObject) => softObject.id_soft === soft.id);
+                    const quantity = matchingSoft ? matchingSoft.qt_soft : "";
                     return (
                         <div key={soft.key}>
                             <div className='softInfo'>
                                 <div className='in-boxlInfo'>
                                     <p>{soft.name}</p>
                                     <hr/>
-                                    <p>{soft.qt_soft}cl</p>
+                                    <p>{quantity}cl</p>
                                 </div>
                             </div>
-                            {index !== softs.length && <br />}
+                            {index !== filteredSofts.length && <br />}
                         </div>
                     );
                 })}
             </div>
-            <p className='type'>INGREDIENT(S)</p>
+            
             <div className='ingredients'>
-                {ingredients.map((ingredient, index) => {
+                {filteredIngredients.length > 0 && (
+                    <p className='type'>INGREDIENT(S)</p>
+                )}
+                {filteredIngredients.map((ingredient, index) => {
                     const lineIngredient = `${ingredient.name} ${" ".repeat(40 - ingredient.name.length)}`;
                     return (
                         <div key={ingredient.key}>
                             <div className='ingredientInfo'>
                                 <p style={{ whiteSpace: 'pre-wrap' }}>{lineIngredient}</p>
                             </div>
-                            {index !== ingredients.length && <br />}
+                            {index !== filteredIngredients.length && <br />}
                         </div>
                     );
                 })}
