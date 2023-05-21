@@ -7,6 +7,7 @@ import SubmitView from './views/submitView/submitView.js';
 import ContactView from './views/contactView/contactView.js'
 import LoginView from './views/loginView/loginView.js';
 import CocktailsView from './views/cocktailsView/cocktailsView.js'
+import BarsView from './views/barsView/barsView.js';
 
 import ImageFond from './images/fond.jpg'
 
@@ -68,7 +69,7 @@ function App() {
                     <Route path='/' exact element={<HomeView changeUrl={changeUrl}/>}/>
                     <Route path='/home' exact element={<HomeView changeUrl={changeUrl} />}/>
                     <Route path='/cocktails' exact element={<CocktailsView changeUrl={changeUrl} />}/>
-                    <Route path='/bars' exact element={<HomeView changeUrl={changeUrl} />}/>
+                    <Route path='/bars' exact element={<BarsView changeUrl={changeUrl} />}/>
                     <Route path='/submit' exact element={<SubmitView changeUrl={changeUrl} isLogged={isLogged} />}/>
                     <Route path='/contact' exact element={<ContactView changeUrl={changeUrl} />}/>
                     <Route path='/login' exact element={<LoginView url={url} btnLogin={btnLogin} changeStateBtnLogin={changeStateBtnLogin} />}/>

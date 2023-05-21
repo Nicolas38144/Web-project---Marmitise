@@ -1,28 +1,21 @@
 import React,{useEffect} from 'react';
+
+import Card_Home_Contact from '../../components/card/card_Home_Contact';
 import './homeView.css';
 
-
 export default function HomeView(props){
-
-    /*function getCookie(name) {
-        const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
-        return cookieValue ? cookieValue.pop() : '';
-    }
-    const token = getCookie('token');*/
-
-    
-
     useEffect(() => {
         props.changeUrl(window.location.href);
-        /*
-        console.log("btnLogin : " + props.btnLogin);
-        console.log("user : " + localStorage.getItem('user'));
-        */
     },[]);
 
     return(
         <div className='homeView'>
+            <Card_Home_Contact 
+                className="boxHome"
+                title="Welcome to Marmitise"
+                text="On this site, you can find many cocktail recipes. Moreover, you can even create your own cocktails in the 'Submit your recipes' tab. To do so, log in."
+                text2="Have a nice visit on our site"
+            />
         </div>
-
     );
 }
