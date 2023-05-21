@@ -34,6 +34,7 @@ function App() {
     const [btnLogin,setBtnLogin]=useState(false);
     const [isLogged,setIsLogged]=useState(false);
     const [url,setUrl]=useState("");
+    const [isAdmin, setIsAdmin]=useState(false);
 
     function changeStateBtnLogin(result) {
         setBtnLogin(result);
@@ -53,26 +54,38 @@ function App() {
         const lastPart = parts[parts.length - 1];
         setUrl('/'+lastPart);
     }
+
+    function changeIsAdmin(result) {
+        setIsAdmin(result);
+    }
     
     return (
         <div className="App">
             <Router>
-                <img className="background" src={ImageFond} alt="Image de fond"></img>
+                <img className="background" src={ImageFond} alt="Fond"></img>
                 <NavBar className="navBar" 
                     btnLogin={btnLogin} 
                     changeStateBtnLogin={changeStateBtnLogin} 
                     isLogged={isLogged}
-                    changeIsLogged={changeIsLogged}> 
+                    changeIsLogged={changeIsLogged}
+                    changeIsAdmin={changeIsAdmin}> 
                 </NavBar>
                 <Routes>
                     <Route path="*" element={<h1>404: page not found</h1>}/>
-                    <Route path='/' exact element={<HomeView changeUrl={changeUrl}/>}/>
-                    <Route path='/home' exact element={<HomeView changeUrl={changeUrl} />}/>
+                    <Route path='/' exact element={<HomeView changeUrl={changeUrl} isAdmin={isAdmin} />}/>
+                    <Route path='/home' exact element={<HomeView changeUrl={changeUrl} isAdmin={isAdmin} />}/>
                     <Route path='/cocktails' exact element={<CocktailsView changeUrl={changeUrl} />}/>
                     <Route path='/bars' exact element={<BarsView changeUrl={changeUrl} />}/>
                     <Route path='/submit' exact element={<SubmitView changeUrl={changeUrl} isLogged={isLogged} />}/>
                     <Route path='/contact' exact element={<ContactView changeUrl={changeUrl} />}/>
-                    <Route path='/login' exact element={<LoginView url={url} btnLogin={btnLogin} changeStateBtnLogin={changeStateBtnLogin} />}/>
+                    <Route path='/login' exact element={
+                        <LoginView 
+                            url={url} 
+                            btnLogin={btnLogin} 
+                            changeStateBtnLogin={changeStateBtnLogin}
+                            changeIsAdmin={changeIsAdmin}
+                        />
+                    }/>
                     {/*
                     <Route path={"/Sessions/:id"} exact element={<InfoViewSession />} />
                     <Route path={'/Sessions'} exact element={<SessionView />} />

@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React,{useEffect} from 'react';
 import { NavLink, useNavigate } from "react-router-dom";
 
 import logo from '../../images/logo.png';
@@ -17,6 +17,7 @@ export default function NavBar(props){
         localStorage.setItem('user', '');
         localStorage.setItem('token', '');
         props.changeStateBtnLogin(false);
+        props.changeIsAdmin(false);
 
         const url = window.location.href;
         const parts = url.split('/');

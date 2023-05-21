@@ -4,7 +4,7 @@ import './card_Home_Contact.css';
 
 export default function Card_Home_Contact(props){
 
-    useEffect(()=>{});
+    useEffect(()=>{},[]);
 
     return(
         <>

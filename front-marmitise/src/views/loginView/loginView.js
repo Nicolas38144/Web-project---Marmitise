@@ -12,7 +12,7 @@ export default function LoginView(props){
     
     useEffect(() => {
         if (props.btnLogin === false) {
-            setTimeout(navigate(props.url),500);
+            navigate(props.url);
         }
     });
 
@@ -20,9 +20,9 @@ export default function LoginView(props){
         <div className='loginView'>     
             <LoginBox className='loginBox'  
                 changeStateBtnLogin={props.changeStateBtnLogin}
-                btnLogin={props.btnLogin} 
+                btnLogin={props.btnLogin}
+                changeIsAdmin={props.changeIsAdmin} 
             />
         </div>
-
     );
 }

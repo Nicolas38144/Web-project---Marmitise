@@ -18,6 +18,7 @@ const register = async (req, res, next) => {
         const newUser = new User({
             email: req.body.email,
             password: hashedPass,
+            admin: req.body.admin,
         });
     
         await newUser.save();
@@ -49,10 +50,11 @@ const login = (req, res, next) => {
                 }
                 if (result) {
                     let token = jwt.sign({email: user.email}, 'verySecretValue', {expiresIn: '1h'})
-                    //res.cookie('token', token, { httpOnly: true, secure: true })
+                    let admin = user.admin || false;
                     res.json({
                         message: 'Login successful !',
-                        token
+                        token,
+                        admin
                     })
                 }
                 else {

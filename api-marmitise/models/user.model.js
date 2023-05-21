@@ -10,6 +10,10 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true  // ajout de l'option required pour le champ password (si nécessaire)
+    },
+    admin: {
+        type: Boolean,
+        default: false
     }
 }, {
     timestamps: true,

@@ -40,10 +40,6 @@ export default function LoginBox(props){
             wrapper.classList.remove('active');
             emptyInputs();
         });
-
-
-        console.log("btnLogin in Box: " + props.btnLogin);
-
     })
 
     function closeLoginBox() {
@@ -59,10 +55,15 @@ export default function LoginBox(props){
     }
 
     function treatmentData(data, dataUser) {
-        console.log('message : ' + data.message);
         if (data.message === 'Login successful !') {
             localStorage.setItem('token', data.token);
             localStorage.setItem('user', dataUser.email);
+            if (data.admin === true) {
+                props.changeIsAdmin(true);
+            }
+            else {
+                props.changeIsAdmin(false);
+            }
             closeLoginBox();
         }
         else {
