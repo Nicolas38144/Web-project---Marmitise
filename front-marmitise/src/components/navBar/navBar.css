@@ -5,7 +5,6 @@
     align-items: center;
     z-index: 99;
     opacity: 0.99;
-    /*background-color: #030303;*/
 }
 
 .navBar .logo {
@@ -14,6 +13,11 @@
 
 .navBar .navigation {
     padding: 20px 50px;
+}
+
+.navBar .navigation .btnToggleNav {
+    cursor: pointer;
+    display: none;
 }
 
 .navBar .navigation .current{
@@ -44,7 +48,7 @@
     transform: scaleX(1);
 }
 
-.navBar .navigation .btnLogin-popup {
+.navBar .btnLogin-popup,.btnToggleNav {
     width: 130px;
     height: 50px;
     background: transparent;
@@ -55,11 +59,93 @@
     font-size: 1.1em;
     color: #fff;
     font-weight: 500;
-    margin-left: 40px;
     transition: .5s;
 }
 
-.navBar .navigation .btnLogin-popup:hover {
+.navBar .navigation .btnLogin-popup {
+    margin-left: 40px;
+}
+
+.navBar .navigation .btnLogin-popup:hover,.btnToggleNav:hover {
     background: #fff;
     color: #162938;
+}
+
+.navBar .navCenter,.navCenter2 {
+    display: none;
+}
+
+
+@media screen and (max-width: 1100px) {
+    .navBar .navigation {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .navBar .navigation .current::after {
+        content: unset;
+        position: unset;
+        left: unset;
+        bottom: unset;
+        width: unset;
+        height: unset;
+        background: unset;
+        border-radius: unset;
+        transform-origin: unset;
+        transform: unset;
+        transition: unset;
+    }
+    .navBar .navigation .current:hover::after {
+        transform-origin: unset;
+        transform: unset;
+    }
+}
+
+@media screen and (max-width: 940px) {
+    .navBar {
+        justify-content: unset;
+    }
+    .navBar .navigation {
+        display: flex;
+        padding: 0px 0px;
+        margin: auto;
+    }
+    .navBar .navigation .btnToggleNav {
+        display: unset;
+    }
+    .navBar .navigation .current {
+        display: none;
+    }    
+
+    .navBar .navCenter2 {
+        display: none;
+    } 
+    .navBar .navCenter {
+        display: unset;
+        display: flex;
+        flex-direction: column;
+        row-gap: 30px;
+        text-align: center;
+        padding: 6% 9%;
+        border-radius: 10px;
+        background: black;
+        position: absolute;
+        top: 350%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .navBar .navCenter .current {
+        font-size: 1.4em;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 10px 10px;
+        border: 2px solid black;
+    }
+
+    .navBar .navCenter .current:hover {
+        border-color: #fff;
+        outline: none;
+        border-radius: 6px;
+    }
 }

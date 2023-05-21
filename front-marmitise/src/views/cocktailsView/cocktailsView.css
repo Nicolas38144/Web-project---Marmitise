@@ -1,9 +1,16 @@
 .cocktailsView {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(30%, 3fr));
     grid-row-gap: 80px;
     justify-items: center;
     margin-bottom: 4%;
+}
+
+@media screen and (max-width: 1285px) {
+    .cocktailsView {
+        grid-template-columns: repeat(auto-fit, minmax(40%, 2fr));
+        grid-row-gap: 50px;
+    }
 }
 
 @media screen and (max-width: 840px) {
