@@ -108,3 +108,49 @@
     cursor: pointer;
     background-color: #fff;
 }
+
+@media screen and (max-width: 1360px) {
+    .cardSubmit-login .title {
+        margin: 0% 5%;
+    }
+}
+
+@media screen and (max-width: 1245px) {
+    .cardSubmit-login .title {
+        margin: 5% 0%;
+    }
+}
+
+@media screen and (max-width: 940px) {
+    .cardSubmit-login .title {
+        margin: 5% 0% 2%;
+    }
+    .cardSubmit-login .custom-tab-list {
+        flex-direction: column;
+        margin-bottom: 10%;
+        gap: 10px;
+        text-align: center;
+    }
+}
+@media screen and (max-width: 880px) {
+    .cardSubmit-login .title {
+        font-size: 50px;
+    }
+}
+
+@media screen and (max-width: 740px) {
+    .cardSubmit-login {
+        width: 80%;
+    }
+    .cardSubmit-login .title {
+        font-size: 40px;
+        margin: 5% 0% 5%;
+        
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .cardSubmit-login .title {
+        font-size: 30px;
+    }
+}
