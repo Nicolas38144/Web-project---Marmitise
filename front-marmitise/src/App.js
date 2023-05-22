@@ -22,6 +22,8 @@ function App() {
             localStorage.setItem('cocktails', '');
             localStorage.setItem('ingredients', '');
             localStorage.setItem('softs', '');
+            localStorage.setItem('bars', '');
+            localStorage.setItem('cocktailsBar', '');
             //localStorage.clear();
         };
         window.addEventListener('beforeunload', handleBeforeUnload);

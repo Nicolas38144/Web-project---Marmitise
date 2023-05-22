@@ -1,7 +1,19 @@
 .barsView {
-    /*
-    display: flex;
-    justify-content: center;
-    margin-top: 5%;
-    */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30%, 3fr));
+    grid-row-gap: 80px;
+    justify-items: center;
+    margin-bottom: 4%;
+}
+
+@media screen and (max-width: 1100px) {
+    .barsView {
+        grid-template-columns: repeat(auto-fit, minmax(47%, 2fr));
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .barsView {
+        grid-template-columns: repeat(auto-fit, minmax(90%, 1fr));
+    }
 }

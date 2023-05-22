@@ -1,0 +1,86 @@
+.cardBar {
+    width: 90%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(30px);
+    box-shadow: 0 0 15px rgba(113, 113, 113, 0.5);
+    display: flex;
+    flex-direction: column;
+    padding: 1% 2% 2%;
+    align-items: center;
+    color: white;
+}
+
+.cardBar .name {
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 4%;
+    padding-top: 4%;
+}
+
+.cardBar .localisation {
+    font-size: 25px;
+}
+
+.cardBar hr {
+    width: 60%;
+    margin: 3% 0% 3%;
+}
+
+.cardBar .cocktails {
+    width: 100%;
+}
+
+.cardBar .cocktails > p {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 5%;
+} 
+
+.cardBar .cocktails .boxInfo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30%, 3fr));
+}
+
+.cardBar .cocktails .boxInfo .in-boxInfo {
+    display: flex;
+}
+
+.cardBar .cocktails .boxInfo .in-boxInfo p {
+    white-space: pre-wrap;
+    margin-bottom: 10%;
+}
+
+
+
+@media screen and (max-width: 1260px) {
+    .cardBar .name {
+        font-size: 2em;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .cardBar .name {
+        font-size: 3em;
+    }
+}
+
+
+@media screen and (max-width: 860px) {
+    .cardBar .name {
+        font-size: 2em;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .cardBar .name {
+        font-size: 3em;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .cardBar .name {
+        font-size: 2em;
+    }
+}
