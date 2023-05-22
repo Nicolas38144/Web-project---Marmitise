@@ -40,7 +40,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(cors({
     //origin: "http://localhost:3000"
-    origin: "https://646ae64e6ec56d0babb271c3--steady-faloodeh-6c160a.netlify.app/"
+    origin: "https://marmitise.netlify.app/"
 }));
 
 
