@@ -86,7 +86,7 @@ export default function LoginBox(props){
         e.preventDefault();
         const data = {email, password};
 
-        fetch('http://localhost:8000/api/register', {
+        fetch('https://api-marmitise.onrender.com/api/register', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(data)
@@ -101,7 +101,7 @@ export default function LoginBox(props){
         e.preventDefault();
         const dataUser = {email, password};
 
-        fetch('http://localhost:8000/api/login', {
+        fetch('https://api-marmitise.onrender.com/api/login', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(dataUser)

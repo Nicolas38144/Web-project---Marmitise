@@ -1,5 +1,6 @@
 ALCOOL (id, nom, précision, date_fabrication)
 SOFT (id, nomSoft)
-COCKTAIL (id, nom, ALCOOL, SOFT, qt_alc, qt_soft)
+INGREDIENT (id, nomIngredient)
+COCKTAIL (id, nom, ALCOOL, SOFT, qt_alc, qt_soft, INGREDIENT)
 BAR (id, Nom, localisation, COCKTAIL)
-User (id, email, password)
+User (id, email, password, admin=false)
