@@ -21,10 +21,17 @@ const userSchema = new Schema({
 });
   
 
-// Ajouter une propriété virtuelle pour le champ id qui sera égal à l'_id de l'utilisateur.
-userSchema.virtual('id').get(function() {
-    return this._id.toHexString();
+userSchema.pre('save', async function (next) {
+    if (this.isNew) {
+        const lastUser = await User.findOne({}, {}, { sort: { 'id': -1 } });
+        const lastId = lastUser ? parseInt(lastUser.id) : 0;
+        const newID = new mongoose.Types.ObjectId((lastId+1).toString().padStart(24, '0'));
+        this.id = (lastId+1).toString().padStart(24, '0')
+        this._id = newID;
+    }
+    next();
 });
+
 userSchema.set('toObject', { virtuals: true });   // ajout des getters pour la sérialisation des objets
 userSchema.set('toJSON', { virtuals: true });     // ajout des getters pour la sérialisation en JSON
 

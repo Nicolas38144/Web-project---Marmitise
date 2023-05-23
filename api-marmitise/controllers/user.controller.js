@@ -7,7 +7,6 @@ const register = async (req, res, next) => {
     try {
         const hashedPass = await bcrypt.hash(req.body.passwordRegister, 10);
         const user = await User.findOne({ email: req.body.emailRegister });
-    
         if (user) {
             res.json({
                 message: 'User already exists',
@@ -73,6 +72,72 @@ const login = (req, res, next) => {
 }
 
 
+//READ ALLL
+const getUsers = async (req, res, next) => {
+    try {
+        const users = await User.find();
+        res.json(users);
+    } 
+    catch (error) {
+        res.status(500).json({ 
+            message: err.message || "Some error occurred while retrieving users." 
+        });
+    }
+};
+
+
+// READ ONE
+const getUserById = async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        if (!user) {
+            return res.status(404).json({ 
+                message: "User not found with id " + req.params.id 
+            });
+        }
+        res.json(user);
+    } 
+    catch (error) {
+        if (err.kind === 'ObjectId') {
+            return res.status(404).json({
+                message: "User not found with id " + req.params.id
+            });
+        }
+        return res.status(500).json({
+            message: "Error retrieving user with id " + req.params.id
+        });
+    }
+  };
+
+
+  //DELETE
+const deleteUser = async (req, res, next) => {
+    try {
+        const user = await User.findByIdAndDelete(req.params.id);
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found with id " + req.params.id
+            });
+        }
+        res.json({ 
+            message: 'User deleted successfully' 
+        });
+    } 
+    catch (error) {
+        if (err.kind === 'ObjectId' || err.name === 'NotFound') {
+            return res.status(404).json({
+                message: "User not found with id " + req.params.id
+            });
+        }
+        return res.status(500).json({
+            message: "Could not delete user with id " + req.params.id
+        });
+    }
+};
 module.exports = {
-    register, login
+    register, 
+    login,
+    getUsers,
+    getUserById,
+    deleteUser
 }

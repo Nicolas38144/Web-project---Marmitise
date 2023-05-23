@@ -7,7 +7,7 @@ var cors = require("cors");
 require('dotenv').config();
 
 
-const authRoute = require('./routes/auth.routes');
+const userRoute = require('./routes/user.routes');
 const softRouter = require('./routes/soft.routes');
 const alcoolRouter = require('./routes/alcool.routes');
 const ingredientRouter = require('./routes/ingredient.routes');
@@ -29,8 +29,6 @@ async function connect() {
 }
 connect();
 
-
-
 const app = express();
 
 app.use(morgan('dev'));
@@ -44,7 +42,25 @@ app.use(cors({
 }));
 
 
-app.use('/api', authRoute);
+/*
+//////////////////////// PERMET DE SECURISE L'UTILISATION DE L'API UNIQUEMENT AU SITE
+// Définissez la liste des origines autorisées
+const allowedOrigins = ["http://localhost:3000","https://marmitise.netlify.app"];
+
+// Configurez CORS avec une fonction personnalisée pour vérifier l'origine de la requête
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  } else {
+    // Si l'origine de la requête n'est pas autorisée, renvoyez une erreur ou une réponse appropriée
+    return res.status(403).json({ error: "Access denied" });
+  }
+  next();
+});
+*/
+
+app.use('/api/user', userRoute);
 app.use('/api/soft', softRouter);
 app.use('/api/alcool', alcoolRouter);
 app.use('/api/ingredient', ingredientRouter);
@@ -52,13 +68,9 @@ app.use('/api/bar', barRouter);
 app.use('/api/cocktail', cocktailRouter);
 
 
-
-
 app.get("/", (req, res) => {
     res.send("welcome to the beginning of my project");
 });
-
-
 
 const PORT = process.env.PORT || 8000
 app.listen(PORT, () => {
