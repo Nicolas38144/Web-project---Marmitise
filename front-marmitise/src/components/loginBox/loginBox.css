@@ -100,9 +100,13 @@
     border: none;
     outline: none;
     font-size: 1em;
-    color: #FFF0ED;
     font-weight: 600;
     padding: 0 35px 0 5px;
+    color: white;
+}
+
+.loginBox .input-box .input-invalid {
+    color: red;
 }
 
 .loginBox .input-box .icon { /*Les icons des inputs*/

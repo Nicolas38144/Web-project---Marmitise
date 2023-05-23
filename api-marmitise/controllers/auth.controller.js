@@ -5,8 +5,8 @@ const jwt = require('jsonwebtoken');
 
 const register = async (req, res, next) => {
     try {
-        const hashedPass = await bcrypt.hash(req.body.password, 10);
-        const user = await User.findOne({ email: req.body.email });
+        const hashedPass = await bcrypt.hash(req.body.passwordRegister, 10);
+        const user = await User.findOne({ email: req.body.emailRegister });
     
         if (user) {
             res.json({
@@ -16,7 +16,7 @@ const register = async (req, res, next) => {
         }
     
         const newUser = new User({
-            email: req.body.email,
+            email: req.body.emailRegister,
             password: hashedPass,
             admin: req.body.admin,
         });
@@ -36,8 +36,8 @@ const register = async (req, res, next) => {
 
 
 const login = (req, res, next) => {
-    var emailBody = req.body.email;
-    var password = req.body.password;
+    var emailBody = req.body.emailLogin;
+    var password = req.body.passwordLogin;
 
     User.findOne({email: emailBody})
     .then(user => {

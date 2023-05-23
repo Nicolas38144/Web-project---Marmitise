@@ -15,7 +15,8 @@ export default function CardSubmit(props){
         if (props.isLogged === true) {  
             const getAlcohols = async () => {
                 try {
-                    const response = await fetch('https://api-marmitise.onrender.com/api/alcool/', {});
+                    //const response = await fetch('https://api-marmitise.onrender.com/api/alcool/', {});
+                    const response = await fetch('http://localhost:8000/api/alcool/', {});
                     const data = await response.json();
                     const alcoholsArray = data.map((alcohol) => ({
                         key: alcohol._id,
@@ -35,7 +36,8 @@ export default function CardSubmit(props){
 
             const getSofts = async () => {
                 try {
-                    const response = await fetch('https://api-marmitise.onrender.com/api/soft/', {});
+                    //const response = await fetch('https://api-marmitise.onrender.com/api/soft/', {});
+                    const response = await fetch('http://localhost:8000/api/soft/', {});
                     const data = await response.json();
                     const softsArray = data.map((soft) => ({
                         key: soft._id,
@@ -52,7 +54,8 @@ export default function CardSubmit(props){
 
             const getIngredients = async () => {
                 try {
-                    const response = await fetch('https://api-marmitise.onrender.com/api/ingredient/', {});
+                    //const response = await fetch('https://api-marmitise.onrender.com/api/ingredient/', {});
+                    const response = await fetch('http://localhost:8000/api/ingredient/', {});
                     const data = await response.json();
                     const ingredientsArray = data.map((ingredient) => ({
                         key: ingredient._id,
@@ -162,7 +165,8 @@ export default function CardSubmit(props){
                         })),
                     };
 
-                    fetch('https://api-marmitise.onrender.com/api/cocktail', {
+                    //fetch('https://api-marmitise.onrender.com/api/cocktail', {
+                    fetch('http://localhost:8000/api/cocktail', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -216,8 +220,10 @@ export default function CardSubmit(props){
         <div className='cardSubmit-login'>
             <h1 className='title'>Create your own cocktail !</h1>
             <input 
-                className='inputNameCocktail' 
-                placeholder='Name of your cocktail' 
+                className='inputNameCocktail'
+                type='text'
+                maxLength="15"
+                placeholder='Name of your cocktail'
                 onChange={(e) => setCocktailName(e.target.value)} 
                 ref={cocktailNameRef}
             />

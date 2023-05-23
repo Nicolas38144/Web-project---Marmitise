@@ -16,8 +16,8 @@ export default function CocktailsView(props){
         const getCocktails= ()=> {
             var cocktailsArray = [];
             var cocktail = {}
-            /*fetch('http://localhost:8000/api/cocktail/',{})*/
-            fetch('https://api-marmitise.onrender.com/api/cocktail/',{})
+            fetch('http://localhost:8000/api/cocktail/',{})
+            //fetch('https://api-marmitise.onrender.com/api/cocktail/',{})
             .then((response) => { 
                 response.json().then((data) => {
                     for (let i = 0; i < data.length; i++) {
@@ -30,7 +30,7 @@ export default function CocktailsView(props){
                         cocktailsArray.push({...cocktail});
                     }
                     setCocktails(cocktailsArray);
-                    localStorage.setItem('cocktails', JSON.stringify(cocktailsArray));
+                    //localStorage.setItem('cocktails', JSON.stringify(cocktailsArray));
                 })
                 .catch((err) => {
                     console.log(err);
@@ -38,13 +38,13 @@ export default function CocktailsView(props){
             })
         }
 
-        const storedCocktailsData = localStorage.getItem('cocktails');
-        if (!storedCocktailsData) {
+        /*const storedCocktailsData = localStorage.getItem('cocktails');
+        if (!storedCocktailsData) {*/
             getCocktails();
-        }
+        /*}
         else {
             setCocktails(JSON.parse(storedCocktailsData));
-        }
+        }*/
     },[]);
 
     return(

@@ -32,7 +32,6 @@ export default function NavBar(props){
 
     function toggleNav() {
         isNavOpen = !isNavOpen;
-        console.log(isNavOpen);
         var elem1 = document.getElementsByClassName("navCenter2");
         var elem2 = document.getElementsByClassName("navCenter");
         if (isNavOpen) {

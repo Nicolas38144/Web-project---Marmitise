@@ -11,8 +11,8 @@ export default function CardCocktail(props){
     useEffect(()=>{
         const getAlcohols = (alcoolObjects) => {
             const promises = alcoolObjects.map((alcoolObject) => {
-                //return fetch('http://localhost:8000/api/alcool/' + alcoolObject.id_alcool, {})
-                return fetch('https://api-marmitise.onrender.com/api/alcool/' + alcoolObject.id_alcool, {})
+                return fetch('http://localhost:8000/api/alcool/' + alcoolObject.id_alcool, {})
+                //return fetch('https://api-marmitise.onrender.com/api/alcool/' + alcoolObject.id_alcool, {})
                 .then((response) => response.json())
                 .then((data) => {
                     return {
@@ -48,7 +48,8 @@ export default function CardCocktail(props){
 
         const getSofts = (softObjects) => {
             const promises = softObjects.map((softObject) => {
-                return fetch('https://api-marmitise.onrender.com/api/soft/' + softObject.id_soft, {})
+                //return fetch('https://api-marmitise.onrender.com/api/soft/' + softObject.id_soft, {})
+                return fetch('http://localhost:8000/api/soft/' + softObject.id_soft, {})
                 .then((response) => response.json())
                 .then((data) => {
                     return {
@@ -80,7 +81,8 @@ export default function CardCocktail(props){
 
         const getIngredients = (ingredientObjects) => {
             const promises = ingredientObjects.map((ingredientObject) => {
-                return fetch('https://api-marmitise.onrender.com/api/ingredient/' + ingredientObject.id_ingredient, {})
+                //return fetch('https://api-marmitise.onrender.com/api/ingredient/' + ingredientObject.id_ingredient, {})
+                return fetch('http://localhost:8000/api/ingredient/' + ingredientObject.id_ingredient, {})
                 .then((response) => response.json())
                 .then((data) => {
                     return {
