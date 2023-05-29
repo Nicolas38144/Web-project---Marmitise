@@ -1,0 +1,28 @@
+.card_User {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card_User .card_User_bis {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    min-width: 80%;
+}
+
+.card_User .userItem {
+    gap: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.card_User .btn {
+    min-width: 150px;
+    min-height: 50px;
+    cursor: pointer;
+    border-radius: 50px;
+    font-size: 20px;
+}
