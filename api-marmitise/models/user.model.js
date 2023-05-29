@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
+    id: {
+        type: mongoose.Schema.Types.ObjectId,
+        unique: true
+    }, 
     email: {
         type: String,
         unique: true,   // ajout de l'option unique pour le champ email
@@ -17,7 +21,8 @@ const userSchema = new Schema({
     }
 }, {
     timestamps: true,
-    versionKey: false    // désactivation de la création automatique du champ "__v" par Mongoose
+    versionKey: false,    // désactivation de la création automatique du champ "__v" par Mongoose
+    _id: true
 });
   
 

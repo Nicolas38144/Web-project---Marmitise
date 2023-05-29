@@ -17,9 +17,9 @@ const register = async (req, res, next) => {
         const newUser = new User({
             email: req.body.emailRegister,
             password: hashedPass,
-            admin: req.body.admin,
+            admin: req.body.admin
         });
-    
+        console.log(newUser);
         await newUser.save();
     
         res.json({

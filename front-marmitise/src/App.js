@@ -8,6 +8,7 @@ import ContactView from './views/contactView/contactView.js'
 import LoginView from './views/loginView/loginView.js';
 import CocktailsView from './views/cocktailsView/cocktailsView.js'
 import BarsView from './views/barsView/barsView.js';
+import AdminView from './views/adminView/adminView.js';
 
 import ImageFond from './images/fond.jpg'
 
@@ -15,7 +16,17 @@ import ImageFond from './images/fond.jpg'
 import './App.css';
 
 function App() {
+
+    const [btnLogin,setBtnLogin]=useState(false);
+    const [isLogged,setIsLogged]=useState(false);
+    const [url,setUrl]=useState("");
+    const [isAdmin, setIsAdmin]=useState(false);
+
     useEffect(() => {
+        if (localStorage.getItem("isAdmin") == "true") {
+            setIsAdmin(true);
+        }
+
         const handleBeforeUnload = (event) => {
             event.preventDefault();
             localStorage.setItem('alcohols', '');
@@ -32,11 +43,6 @@ function App() {
         };
     }, []);
 
-
-    const [btnLogin,setBtnLogin]=useState(false);
-    const [isLogged,setIsLogged]=useState(false);
-    const [url,setUrl]=useState("");
-    const [isAdmin, setIsAdmin]=useState(false);
 
     function changeStateBtnLogin(result) {
         setBtnLogin(result);
@@ -59,6 +65,8 @@ function App() {
 
     function changeIsAdmin(result) {
         setIsAdmin(result);
+        localStorage.setItem('isAdmin', result);
+        console.log("localStorage : ",localStorage.getItem('isAdmin'));
     }
     
     return (
@@ -74,8 +82,8 @@ function App() {
                 </NavBar>
                 <Routes>
                     <Route path="*" element={<h1>404: page not found</h1>}/>
-                    <Route path='/' exact element={<HomeView changeUrl={changeUrl} isAdmin={isAdmin} />}/>
-                    <Route path='/home' exact element={<HomeView changeUrl={changeUrl} isAdmin={isAdmin} />}/>
+                    <Route path='/' exact element={isAdmin ? <AdminView changeUrl={changeUrl} /> : <HomeView changeUrl={changeUrl} />} />
+                    <Route path='/home' exact element={isAdmin ? <AdminView changeUrl={changeUrl} /> : <HomeView changeUrl={changeUrl} />} />
                     <Route path='/cocktails' exact element={<CocktailsView changeUrl={changeUrl} />}/>
                     <Route path='/bars' exact element={<BarsView changeUrl={changeUrl} />}/>
                     <Route path='/submit' exact element={<SubmitView changeUrl={changeUrl} isLogged={isLogged} />}/>

@@ -1,14 +1,14 @@
 import React,{useEffect} from 'react';
 
-import './cardManagement.css';
+import './card_Soft_Ingredient.css';
 
-export default function CardManagement(props){
+export default function Card_Soft_Ingredient(props){
 
     useEffect(()=>{},[]);
 
     return(
         <>
-        <div className='cardManagement'>
+        <div className='card_Soft_Ingredient'>
             <p className='title'>hello admin</p>
         </div>
         </>   

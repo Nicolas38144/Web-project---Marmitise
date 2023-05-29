@@ -75,7 +75,7 @@
     display: none;
 }
 
-
+/*
 @media screen and (max-width: 1100px) {
     .navBar .navigation {
         display: grid;
@@ -99,8 +99,8 @@
         transform: unset;
     }
 }
-
-@media screen and (max-width: 940px) {
+*/
+@media screen and (max-width: 1100px) {
     .navBar {
         justify-content: unset;
     }
@@ -108,7 +108,13 @@
         display: flex;
         padding: 0px 0px;
         margin: auto;
+        
     }
+
+    .navBar .navigation .btnLogin-popup {
+        margin-left: 160px;
+    }
+
     .navBar .navigation .btnToggleNav {
         display: unset;
     }
@@ -147,5 +153,24 @@
         border-color: #fff;
         outline: none;
         border-radius: 6px;
+    }
+}
+
+
+@media screen and (max-width: 1000px) {
+    .navBar .navigation .btnLogin-popup {
+        margin-left: 120px;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .navBar .navigation .btnLogin-popup {
+        margin-left: 80px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .navBar .navigation .btnLogin-popup {
+        margin-left: 40px;
     }
 }

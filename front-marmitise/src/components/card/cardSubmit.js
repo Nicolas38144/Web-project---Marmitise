@@ -27,7 +27,6 @@ export default function CardSubmit(props){
                         precision: alcohol.precision,
                     }));
                     setAlcohols(alcoholsArray);
-                    localStorage.setItem('alcoholsSubmit', JSON.stringify(alcoholsArray));
                 } 
                 catch (err) {
                     console.log(err);
@@ -45,7 +44,6 @@ export default function CardSubmit(props){
                         name: soft.nomSoft
                     }));
                     setSofts(softsArray);
-                    localStorage.setItem('softsSubmit', JSON.stringify(softsArray));
                 }
                 catch (err) {
                     console.log(err);
@@ -63,14 +61,13 @@ export default function CardSubmit(props){
                         name: ingredient.nomIngredient
                     }));
                     setIngredients(ingredientsArray);
-                    localStorage.setItem('ingredientsSubmit', JSON.stringify(ingredientsArray));
                 }
                 catch (err) {
                     console.log(err);
                 };
             };
             
-            const storedAlcoholsSubmitData = localStorage.getItem('alcoholsSubmit');
+            /*const storedAlcoholsSubmitData = localStorage.getItem('alcoholsSubmit');
             const storedSoftsSubmitData = localStorage.getItem('softsSubmit');
             const storedIngredientsSubmitData = localStorage.getItem('ingredientsSubmit');
             if (!storedAlcoholsSubmitData && !storedSoftsSubmitData&& !storedIngredientsSubmitData) {
@@ -82,7 +79,10 @@ export default function CardSubmit(props){
                 setAlcohols(JSON.parse(storedAlcoholsSubmitData));
                 setSofts(JSON.parse(storedSoftsSubmitData));
                 setIngredients(JSON.parse(storedIngredientsSubmitData));
-            }
+            }*/
+            getAlcohols();
+            getSofts();
+            getIngredients();
         }
     },[]);
     /***************************************** Fin pour les fetch ******************************************/
@@ -237,6 +237,7 @@ export default function CardSubmit(props){
 
                 <TabPanel>
                 <div className='alcohols_map'>
+                    {console.log(alcohols)}
                     {alcohols.map((alcool, index) => {
                         return (
                             <div className='alcoolInfo' key={alcool.key}>
