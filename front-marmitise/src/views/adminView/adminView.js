@@ -2,6 +2,7 @@ import React,{useEffect} from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
+import Card_Alcool from '../../components/card/management/card_Alcool';
 import Card_Soft from '../../components/card/management/card_Soft';
 import Card_Ingredient from '../../components/card/management/card_Ingredient';
 import Card_User from '../../components/card/management/card_User';
@@ -27,11 +28,11 @@ export default function AdminView(props){
                 </TabList>
 
                 <TabPanel>
-                    <Card_Soft/>
+                    <Card_Alcool/>
                 </TabPanel>
 
                 <TabPanel>
-                    <Card_Ingredient/>
+                    <Card_Soft/>
                 </TabPanel>
 
                 <TabPanel>
