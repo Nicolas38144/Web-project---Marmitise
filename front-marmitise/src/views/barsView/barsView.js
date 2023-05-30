@@ -6,6 +6,7 @@ import './barsView.css';
 
 export default function BarsView(props){
     const [bars,setBars]=useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
 
@@ -28,7 +29,7 @@ export default function BarsView(props){
                         barsArray.push({...bar});
                     }
                     setBars(barsArray);
-                    localStorage.setItem('bars', JSON.stringify(barsArray));
+                    //localStorage.setItem('bars', JSON.stringify(barsArray));
                 })
                 .catch((err) => {
                     console.log(err);
@@ -36,27 +37,45 @@ export default function BarsView(props){
             })
         }
 
-        const storedBarsData = localStorage.getItem('bars');
+        /*const storedBarsData = localStorage.getItem('bars');
         if (!storedBarsData) {
             getBars();
         }
         else {
             setBars(JSON.parse(storedBarsData));
-        }
+        }*/
+        getBars();
     },[]);
 
+    const handleSearch = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const filteredBars = bars.filter((bar) =>
+        bar.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return(
         <div className='barsView'>
-            {bars.map((bar) => (
-                <CardBar className='card'
-                    key={bar.key} 
-                    id={bar.id}
-                    name={bar.name} 
-                    localisation={bar.localisation}
-                    cocktails={bar.cocktails}
+            <div className='searchBar'>
+                <input
+                    type='text'
+                    placeholder='Search a bar'
+                    value={searchTerm}
+                    onChange={handleSearch}
                 />
-            ))}
+            </div>
+            <div className='cards'>
+                {filteredBars.map((bar) => (
+                    <CardBar className='card'
+                        key={bar.key} 
+                        id={bar.id}
+                        name={bar.name} 
+                        localisation={bar.localisation}
+                        cocktails={bar.cocktails}
+                    />
+                ))}
+            </div>
         </div>
     );
 }
