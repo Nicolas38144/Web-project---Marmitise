@@ -12,7 +12,7 @@ export default function Card_Soft() {
 
     const getSofts = async () => {
         try {
-            const response = await fetch('http://localhost:8000/api/soft/', {});
+            const response = await fetch('https://api-marmitise.onrender.com/api/soft/', {});
             const data = await response.json();
             const softsArray = data.map((soft) => ({
                 key: soft._id,
@@ -32,7 +32,7 @@ export default function Card_Soft() {
 
     const handleDelete = async (softId) => {
         try {
-            await fetch(`http://localhost:8000/api/soft/${softId}`, {
+            await fetch(`https://api-marmitise.onrender.com/api/soft/${softId}`, {
                 method: 'DELETE',
             });
             setSofts((prevSofts) => prevSofts.filter((soft) => soft.key !== softId));
@@ -49,7 +49,7 @@ export default function Card_Soft() {
                 setErrorMessage('Ce nom de soft existe déjà');
             } 
             else {
-                const response = await fetch(`http://localhost:8000/api/soft/${softId}`, {
+                const response = await fetch(`https://api-marmitise.onrender.com/api/soft/${softId}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ export default function Card_Soft() {
                 setErrorMessage('Ce nom de soft existe déjà');
             }
             else {
-                const response = await fetch('http://localhost:8000/api/soft/', {
+                const response = await fetch('https://api-marmitise.onrender.com/api/soft/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

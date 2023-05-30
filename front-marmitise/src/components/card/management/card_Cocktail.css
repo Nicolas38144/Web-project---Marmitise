@@ -1,0 +1,25 @@
+.card_Cocktail {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+}
+
+.card_Cocktail .cocktailItem {
+    display: flex;
+    flex-basis: 50%;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1%;
+}
+
+.card_Cocktail .div_btn {
+    margin-right: 15%;
+}
+
+.card_Cocktail .btn {
+    min-width: 150px;
+    min-height: 50px;
+    cursor: pointer;
+    border-radius: 50px;
+    font-size: 20px;
+}

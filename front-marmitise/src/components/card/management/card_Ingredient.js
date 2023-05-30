@@ -12,7 +12,7 @@ export default function Card_Ingredient() {
 
     const getIngredients = async () => {
         try {
-            const response = await fetch('http://localhost:8000/api/ingredient/', {});
+            const response = await fetch('https://api-marmitise.onrender.com/api/ingredient/', {});
             const data = await response.json();
             const ingredientsArray = data.map((ingredient) => ({
                 key: ingredient._id,
@@ -32,7 +32,7 @@ export default function Card_Ingredient() {
 
     const handleDelete = async (ingredientId) => {
         try {
-            await fetch(`http://localhost:8000/api/ingredient/${ingredientId}`, {
+            await fetch(`https://api-marmitise.onrender.com/api/ingredient/${ingredientId}`, {
                 method: 'DELETE',
             });
             setIngredients((prevIngredients) => prevIngredients.filter((ingredient) => ingredient.key !== ingredientId));
@@ -49,7 +49,7 @@ export default function Card_Ingredient() {
                 setErrorMessage('Ce nom de ingredient existe déjà');
             } 
             else {
-                const response = await fetch(`http://localhost:8000/api/ingredient/${ingredientId}`, {
+                const response = await fetch(`https://api-marmitise.onrender.com/api/ingredient/${ingredientId}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ export default function Card_Ingredient() {
                 setErrorMessage('Ce nom de ingredient existe déjà');
         } 
         else {
-            const response = await fetch('http://localhost:8000/api/ingredient/', {
+            const response = await fetch('https://api-marmitise.onrender.com/api/ingredient/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

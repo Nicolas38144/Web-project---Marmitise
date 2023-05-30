@@ -6,7 +6,7 @@ export default function Card_User() {
 
     const getUsers = async () => {
         try {
-            const response = await fetch('http://localhost:8000/api/user/', {});
+            const response = await fetch('https://api-marmitise.onrender.com/api/user/', {});
             const data = await response.json();
             const filteredUsers = data.filter((user) => !user.admin); /* Pour ne pas prendre l'admin */
             const usersArray = filteredUsers.map((user) => ({

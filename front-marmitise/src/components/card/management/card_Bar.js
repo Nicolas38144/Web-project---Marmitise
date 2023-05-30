@@ -21,7 +21,7 @@ export default function Card_Bar() {
 
     const getBars = async () => {
         try {
-            const response = await fetch('http://localhost:8000/api/bar/', {});
+            const response = await fetch('https://api-marmitise.onrender.com/api/bar/', {});
             const data = await response.json();
             const barsArray = data.map((bar) => ({
                 key: bar._id,
@@ -39,7 +39,7 @@ export default function Card_Bar() {
 
     const getCocktails = async () => {
         try {
-            const response = await fetch('http://localhost:8000/api/cocktail/', {});
+            const response = await fetch('https://api-marmitise.onrender.com/api/cocktail/', {});
             const data = await response.json();
             const cocktailsArray = data.map((cocktail) => ({
                 key: cocktail._id,
@@ -60,7 +60,7 @@ export default function Card_Bar() {
 
     const handleDelete = async (barId) => {
         try {
-            await fetch(`http://localhost:8000/api/bar/${barId}`, {
+            await fetch(`https://api-marmitise.onrender.com/api/bar/${barId}`, {
                 method: 'DELETE',
             });
             setBars((prevBars) => prevBars.filter((bar) => bar.key !== barId));
@@ -78,7 +78,7 @@ export default function Card_Bar() {
             } 
             else {
                 console.log(editBarCocktails);
-                const response = await fetch(`http://localhost:8000/api/bar/${barId}`, {
+                const response = await fetch(`https://api-marmitise.onrender.com/api/bar/${barId}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -112,7 +112,7 @@ export default function Card_Bar() {
                 setErrorMessage('Ce nom de bar existe déjà dans cette ville');
             } 
             else {
-                const response = await fetch('http://localhost:8000/api/bar/', {
+                const response = await fetch('https://api-marmitise.onrender.com/api/bar/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

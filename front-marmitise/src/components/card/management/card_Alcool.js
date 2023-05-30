@@ -22,7 +22,7 @@ export default function Card_Alcool() {
 
     const getAlcools = async () => {
         try {
-            const response = await fetch('http://localhost:8000/api/alcool/', {});
+            const response = await fetch('https://api-marmitise.onrender.com/api/alcool/', {});
             const data = await response.json();
             const alcoolsArray = data.map((alcool) => ({
                 key: alcool._id,
@@ -45,7 +45,7 @@ export default function Card_Alcool() {
 
     const handleDelete = async (alcoolId) => {
         try {
-            await fetch(`http://localhost:8000/api/alcool/${alcoolId}`, {
+            await fetch(`https://api-marmitise.onrender.com/api/alcool/${alcoolId}`, {
                 method: 'DELETE',
             });
             setAlcools((prevAlcools) => prevAlcools.filter((alcool) => alcool.key !== alcoolId));
@@ -62,7 +62,7 @@ export default function Card_Alcool() {
                 setErrorMessage("Alcohol name already exists");
             } 
             else {
-                const response = await fetch(`http://localhost:8000/api/alcool/${alcoolId}`, {
+                const response = await fetch(`https://api-marmitise.onrender.com/api/alcool/${alcoolId}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ export default function Card_Alcool() {
                 setErrorMessage('Ce nom de alcool existe déjà');
             }
             else {
-                const response = await fetch('http://localhost:8000/api/alcool/', {
+                const response = await fetch('https://api-marmitise.onrender.com/api/alcool/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
