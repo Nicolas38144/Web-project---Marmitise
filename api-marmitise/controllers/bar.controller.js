@@ -75,7 +75,6 @@ const updateBar = async (req, res) => {
         if (!req.body.nom || !req.body.localisation) {
             return res.status(400).json({ message: 'Bar name and location can not be empty' });
         }
-
         const existingBar = await Bar.findOne({ nom: req.body.nom, localisation : req.body.localisation });
         if (existingBar && (existingBar.id.toString() !== req.params.id)) {
             return res.status(409).json({ 

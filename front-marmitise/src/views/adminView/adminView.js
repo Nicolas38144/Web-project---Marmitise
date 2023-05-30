@@ -5,6 +5,7 @@ import 'react-tabs/style/react-tabs.css';
 import Card_Alcool from '../../components/card/management/card_Alcool';
 import Card_Soft from '../../components/card/management/card_Soft';
 import Card_Ingredient from '../../components/card/management/card_Ingredient';
+import Card_Bar from '../../components/card/management/card_Bar';
 import Card_User from '../../components/card/management/card_User';
 
 import './adminView.css';
@@ -44,7 +45,7 @@ export default function AdminView(props){
                 </TabPanel>
 
                 <TabPanel>
-                    <Card_Ingredient/>
+                    <Card_Bar/>
                 </TabPanel>
 
                 <TabPanel>

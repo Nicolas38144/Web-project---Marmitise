@@ -1,0 +1,113 @@
+.card_Bar .barList {
+    text-align: center;
+}
+
+.card_Bar .barList h3 {
+    margin-bottom: 2%;
+}
+
+.card_Bar .barList h4 {
+    margin: 3% 0% 2%;
+}
+
+.card_Bar .barList .barInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 16px;
+
+}
+
+.card_Bar .barList .barInfo .input {
+    min-height: 25px;
+}
+
+
+.card_Bar .barList .cocktailItem {
+    display: flex;
+    width: 35%;
+    margin: 0% auto;
+    margin-bottom: 1%;
+}
+
+.card_Bar .barList .cocktailItem input{
+    width: 35%;
+    cursor: pointer;
+}
+
+.card_Bar .barList .buttonContainer {
+    margin: 1% 0% 5%;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.card_Bar .barList .buttonContainer .btn {
+    min-width: 150px;
+    min-height: 50px;
+    cursor: pointer;
+    border-radius: 50px;
+    font-size: 20px;
+}
+
+.card_Bar .buttonContainerNew {
+    display: flex;
+}
+.card_Bar .buttonContainerNew .btn {
+    min-width: 20%;
+    min-height: 50px;
+    cursor: pointer;
+    border-radius: 50px;
+    font-size: 20px;
+    margin: 0% auto;
+}
+
+.card_Bar .addBarForm {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 0% auto;
+}
+
+.card_Bar .addBarForm h3 {
+    text-align: center;
+    margin: 3% 0% 2%;
+}
+
+.card_Bar .addBarForm h4 {
+    text-align: center;
+    margin: 3% 0% 2%;
+}
+
+.card_Bar .addBarForm .input {
+    width: 50%;
+    height: 30px;
+    margin: 0% auto;
+}
+
+.card_Bar .addBarForm .cocktailItem {
+    display: flex;
+    width: 100%;
+    margin-left: 20%;
+    margin-bottom: 1%;
+}
+
+.card_Bar .addBarForm .cocktailItem input{
+    width: 15%;
+    cursor: pointer;
+}
+
+.card_Bar .addBarForm .buttonContainer {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 5%;
+}
+.card_Bar .addBarForm .btn {
+    min-width: 20%;
+    min-height: 50px;
+    cursor: pointer;
+    border-radius: 50px;
+    font-size: 20px;
+    
+}
