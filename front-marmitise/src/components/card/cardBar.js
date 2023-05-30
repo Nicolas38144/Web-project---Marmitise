@@ -40,17 +40,18 @@ export default function CardBar(props){
                 // Fusionner les nouveaux alcools avec les alcools existants
                 const combinedCocktails = [...existingCocktails, ...newCocktails];
                 setCocktails(combinedCocktails);
-                localStorage.setItem('cocktailsBar', JSON.stringify(combinedCocktails));
+                //localStorage.setItem('cocktailsBar', JSON.stringify(combinedCocktails));
             });
         }
 
-        const storedCocktailsData = localStorage.getItem('cocktailsBar');
+        /*const storedCocktailsData = localStorage.getItem('cocktailsBar');
         if (!storedCocktailsData) {
             getCocktail(props.cocktails);
         }
         else {
             setCocktails(JSON.parse(storedCocktailsData));
-        }
+        }*/
+        getCocktail(props.cocktails);
     },[]);
 
     const filteredCocktails = cocktails.filter((cocktail) =>
