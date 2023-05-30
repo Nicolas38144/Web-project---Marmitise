@@ -75,7 +75,7 @@ export default function Card_Alcool() {
                     }),
                 });
                 const updatedAlcool = await response.json();
-                setAlcools((prevAlcools) => prevAlcools.map((alcool) => (alcool.key === alcoolId ? {...alcool, nom: updatedAlcool.nomAlcool, degre: updatedAlcool.degre, date_fabrication: updatedAlcool.date_fabrication, precision: updatedAlcool.precision} : alcool)));
+                setAlcools((prevAlcools) => prevAlcools.map((alcool) => (alcool.key === alcoolId ? {...alcool, nom: updatedAlcool.nom, degre: updatedAlcool.degre, date_fabrication: updatedAlcool.date_fabrication, precision: updatedAlcool.precision} : alcool)));
                 getAlcools();
                 setIsEditingAlcool(false);
                 setEditAlcoolId('');
