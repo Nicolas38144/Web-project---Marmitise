@@ -7,6 +7,7 @@ import CardCocktail from '../../components/card/cardCocktail'
 export default function CocktailsView(props){    
 
     const [cocktails,setCocktails]=useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
 
@@ -47,6 +48,40 @@ export default function CocktailsView(props){
         }*/
     },[]);
 
+    const handleSearch = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const filteredCocktails = cocktails.filter((cocktail) =>
+        cocktail.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    return (
+        <div className='cocktailsView'>
+            <div className='searchBar'>
+                <input
+                    type='text'
+                    placeholder='Search a cocktail'
+                    value={searchTerm}
+                    onChange={handleSearch}
+                />
+            </div>
+            <div className='cards'>
+                {filteredCocktails.map((cocktail) => (
+                    <CardCocktail
+                    className='card'
+                    key={cocktail.key}
+                    id={cocktail.id}
+                    name={cocktail.name}
+                    alcools={cocktail.alcools}
+                    softs={cocktail.softs}
+                    ingredients={cocktail.ingredients}
+                    />
+                ))}
+            </div>
+        </div>
+      );
+      /*
     return(
         <div className='cocktailsView'>
             {cocktails.map((cocktail) => (
@@ -60,5 +95,5 @@ export default function CocktailsView(props){
                 />
             ))}
         </div>
-    );
+    );*/
 }
