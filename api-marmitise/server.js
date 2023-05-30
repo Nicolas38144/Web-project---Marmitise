@@ -37,12 +37,12 @@ app.use(bodyparser.json());
 app.use(cookieParser());
 app.use(express.json());
 app.use(cors({
-    //origin: "http://localhost:3000"
-    origin: "https://marmitise.netlify.app"
+    origin: "http://localhost:3000"
+    //origin: "https://marmitise.netlify.app"
 }));
 
 
-
+/*
 //////////////////////// PERMET DE SECURISE L'UTILISATION DE L'API UNIQUEMENT AU SITE
 // Définissez la liste des origines autorisées
 const allowedOrigins = ["http://localhost:3000","https://marmitise.netlify.app"];
@@ -57,7 +57,7 @@ app.use((req, res, next) => {
     return res.status(403).json({ error: "Access denied" });
   }
   next();
-});
+});*/
 
 
 app.use('/api/user', userRoute);
