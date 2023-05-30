@@ -98,7 +98,6 @@ export default function Card_Alcool() {
                 setErrorMessage('Ce nom de alcool existe déjà');
             }
             else {
-                console.log(newAlcoolName, newAlcoolDegre, newAlcoolDate, newAlcoolPrecision);
                 const response = await fetch('https://api-marmitise.onrender.com/api/alcool/', {
                     method: 'POST',
                     headers: {
