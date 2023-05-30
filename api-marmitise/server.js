@@ -42,7 +42,7 @@ app.use(cors({
 }));
 
 
-
+/*
 //////////////////////// PERMET DE SECURISE L'UTILISATION DE L'API UNIQUEMENT AU SITE
 // Définissez la liste des origines autorisées
 const allowedOrigins = ["http://localhost:3000","https://marmitise.netlify.app"];
@@ -58,7 +58,7 @@ app.use((req, res, next) => {
   }
   next();
 });
-
+*/
 
 app.use('/api/user', userRoute);
 app.use('/api/soft', softRouter);
