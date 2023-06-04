@@ -1,0 +1,64 @@
+Introduction: 
+	Présentation générale du projet web et contexte. 
+
+
+Vue d'ensemble de l'architecture
+	Description de haut niveau de l'architecture du système : vue d'ensemble de la conception de l'application et comment ses différentes parties interagissent entre elles.
+	Diagramme de l'architecture du système qui montre les composants principaux ou parties principales et leurs interactions 
+	Description des technologies clés utilisées (langages de programmation, framework, bases de données, etc.). 
+
+
+Description détaillée des composants : Pour chaque composant ou module important, fournir une description détaillée (si pertinent, un diagramme UML peut faciliter la description) :
+	son rôle, 
+	sa responsabilité, 
+	ses interactions avec les autres composants, 
+	etc...
+
+
+Architecture des données
+	Si pertinent, description de la structure des données ou du diagramme de classe
+	Diagramme de la base de données (MCD)
+
+
+Architecture des interfaces : Description des interfaces utilisateur, y compris les pages web et les fonctionnalités qu'elles offrent
+	Use Case
+	Diagramme d'activité
+	etc...
+
+
+Stratégie de test : 
+	Description des types de tests qui seront utilisés (tests unitaires, tests d'intégration, tests de performance, etc.)
+	Plan de test : scénarios de test et les critères de réussite. 
+ 
+
+
+Gestion des erreurs :  Description de la façon dont les erreurs seront gérées dans le système (messages, logs, etc...)
+
+
+
+Stratégie de déploiement : Description du déploiement 
+	description des environnements de développement, de test, et de production
+	Plan de déploiement : étapes de déploiement et les critères de réussite. 
+	Pour vous : quel déploiement choisi et méthode employée
+
+
+Sécurité :  Description des mesures de sécurité mises en place pour protéger le système et les données
+	Description de la politique de gestion des utilisateurs et des accès (login, mdp, récupération de mdp, durée, etc...)
+	Protection de l'API
+	Protection générale (OWASP top 10)
+
+
+Performance :  Description de la manière dont la performance du système sera mesurée et optimisée. (pour vous, si vous avez pris des mesures, et lesquelles pour la montée en charge)
+
+
+Maintenabilité : 
+	Description de la manière dont le système sera maintenu après son déploiement.
+	Description de la politique de gestion des versions et des mises à jour. 
+
+
+Conclusion :  
+	Résumé des points clés du document.
+	Prochaines étapes et travaux futurs. 
+
+
+Annexes : Tout matériel supplémentaire nécessaire pour comprendre le document, comme des diagrammes plus détaillés, des tableaux, des listes, etc.

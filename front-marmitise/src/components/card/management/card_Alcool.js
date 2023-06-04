@@ -111,7 +111,13 @@ export default function Card_Alcool() {
                     }),
                 });
                 const newAlcool = await response.json();
-                setAlcools((prevAlcools) => [...prevAlcools, { key: newAlcool._id, id: newAlcool.id, nom: newAlcool.nom, degre: newAlcool.degre, date_fabrication: newAlcool.date_fabrication, precision: newAlcool.precision }]);
+                setAlcools((prevAlcools) => [...prevAlcools, { 
+                    key: newAlcool._id, 
+                    id: newAlcool.id, 
+                    nom: newAlcool.nom, 
+                    degre: newAlcool.degre, 
+                    date_fabrication: newAlcool.date_fabrication, 
+                    precision: newAlcool.precision }]);
                 getAlcools();
                 setNewAlcoolName('');
                 setNewAlcoolDegre('');
