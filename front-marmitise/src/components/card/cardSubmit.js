@@ -15,8 +15,13 @@ export default function CardSubmit(props){
         if (props.isLogged === true) {  
             const getAlcohols = async () => {
                 try {
-                    const response = await fetch('https://api-marmitise.onrender.com/api/alcool/', {});
-                    //const response = await fetch('http://localhost:8000/api/alcool/', {});
+                    const response = await fetch('https://api-marmitise.onrender.com/api/alcool/', {
+                    //const response = await fetch('http://localhost:8000/api/alcool/', {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': localStorage.getItem('token')
+                        }
+                    });
                     const data = await response.json();
                     const alcoholsArray = data.map((alcohol) => ({
                         key: alcohol._id,
@@ -35,8 +40,13 @@ export default function CardSubmit(props){
 
             const getSofts = async () => {
                 try {
-                    const response = await fetch('https://api-marmitise.onrender.com/api/soft/', {});
-                    //const response = await fetch('http://localhost:8000/api/soft/', {});
+                    const response = await fetch('https://api-marmitise.onrender.com/api/soft/', {
+                    //const response = await fetch('http://localhost:8000/api/soft/', {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': localStorage.getItem('token')
+                        }
+                    });
                     const data = await response.json();
                     const softsArray = data.map((soft) => ({
                         key: soft._id,
@@ -52,8 +62,13 @@ export default function CardSubmit(props){
 
             const getIngredients = async () => {
                 try {
-                    const response = await fetch('https://api-marmitise.onrender.com/api/ingredient/', {});
-                    //const response = await fetch('http://localhost:8000/api/ingredient/', {});
+                    const response = await fetch('https://api-marmitise.onrender.com/api/ingredient/', {
+                    //const response = await fetch('http://localhost:8000/api/ingredient/', {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': localStorage.getItem('token')
+                        }
+                    });
                     const data = await response.json();
                     const ingredientsArray = data.map((ingredient) => ({
                         key: ingredient._id,
@@ -170,6 +185,7 @@ export default function CardSubmit(props){
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
+                            'Authorization': localStorage.getItem('token')
                         },
                         body: JSON.stringify(cocktailData),
                     })

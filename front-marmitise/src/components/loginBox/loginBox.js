@@ -99,10 +99,12 @@ export default function LoginBox(props){
         const data = {emailRegister, passwordRegister};
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (emailRegex.test(data.emailRegister)) {
-            fetch('https://api-marmitise.onrender.com/api/user/register', {
             //fetch('http://localhost:8000/api/user/register', {
+            fetch('https://api-marmitise.onrender.com/api/user/register', {
                 method: 'POST',
-                headers: {"Content-Type": "application/json"},
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify(data)
             })
             .then(response => response.json())
@@ -124,7 +126,9 @@ export default function LoginBox(props){
             fetch('https://api-marmitise.onrender.com/api/user/login', {
             //fetch('http://localhost:8000/api/user/login', {
                 method: 'POST',
-                headers: {"Content-Type": "application/json"},
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify(dataUser)
             })
             .then(response => response.json())

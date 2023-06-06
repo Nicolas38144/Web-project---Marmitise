@@ -14,6 +14,8 @@ const ingredientRouter = require('./routes/ingredient.routes');
 const barRouter = require('./routes/bar.routes');
 const cocktailRouter = require('./routes/cocktail.routes');
 
+const authenticateToken = require('./middleware/authToken');
+
 const password_MongoDB = process.env.PASSWORD_MONGODB;
 const uri = "mongodb+srv://"+password_MongoDB+"@cluster0.ob2ppqx.mongodb.net/?retryWrites=true&w=majority"
 
@@ -61,11 +63,11 @@ app.use((req, res, next) => {
 
 
 app.use('/api/user', userRoute);
-app.use('/api/soft', softRouter);
-app.use('/api/alcool', alcoolRouter);
-app.use('/api/ingredient', ingredientRouter);
-app.use('/api/bar', barRouter);
-app.use('/api/cocktail', cocktailRouter);
+app.use('/api/soft', authenticateToken, softRouter);
+app.use('/api/alcool', authenticateToken, alcoolRouter);
+app.use('/api/ingredient', authenticateToken, ingredientRouter);
+app.use('/api/bar', authenticateToken, barRouter);
+app.use('/api/cocktail', authenticateToken, cocktailRouter);
 
 
 app.get("/", (req, res) => {

@@ -9,8 +9,13 @@ export default function CardBar(props){
     useEffect(()=>{
         const getCocktail = (cocktailObjects) => {
             const promises = cocktailObjects.map((cocktail_id) => {
-                return fetch('https://api-marmitise.onrender.com/api/cocktail/' + cocktail_id, {})
-                //return fetch('http://localhost:8000/api/cocktail/' + cocktail_id, {})
+                return fetch('https://api-marmitise.onrender.com/api/cocktail/' + cocktail_id, {
+                //return fetch('http://localhost:8000/api/cocktail/' + cocktail_id, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': localStorage.getItem('token')
+                    }
+                })
                 .then((response) => response.json())
                 .then((data) => {
                     return {

@@ -63,3 +63,32 @@
 .card_Original .msg_error {
     text-align: center;
 }
+
+
+@media screen and (max-width: 1250px) {
+    .card_Original .card_Soft_Ingredient .div_btn {
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 1140px) {
+    .card_Original .card_Soft_Ingredient .softItem {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        margin-bottom: 5%;
+        gap: 10px;
+    }
+    .card_Original .card_Soft_Ingredient .div_btn {
+        justify-content: center;
+        width: 100%;
+        margin: auto;
+    }
+    
+}
+
+@media screen and (max-width: 500px) {
+    .card_Original .card_Soft_Ingredient .div_btn {
+        gap: 5px;
+    }
+}

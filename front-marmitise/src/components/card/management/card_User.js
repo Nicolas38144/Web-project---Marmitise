@@ -6,7 +6,13 @@ export default function Card_User() {
 
     const getUsers = async () => {
         try {
-            const response = await fetch('https://api-marmitise.onrender.com/api/user/', {});
+            //const response = await fetch('http://localhost:8000/api/user/', {
+            const response = await fetch('https://api-marmitise.onrender.com/api/user/', {
+                method: 'GET',
+                headers: {
+                    'Authorization': localStorage.getItem('token')
+                }
+            });
             const data = await response.json();
             const filteredUsers = data.filter((user) => !user.admin); /* Pour ne pas prendre l'admin */
             const usersArray = filteredUsers.map((user) => ({
@@ -28,8 +34,10 @@ export default function Card_User() {
     
     const handleDelete = async (userId) => {
         try {
-            await fetch(`http://localhost:8000/api/user/${userId}`, {
+            //await fetch(`http://localhost:8000/api/user/${userId}`, {
+            await fetch(`https://api-marmitise.onrender.com/api/user/${userId}`, {
                 method: 'DELETE',
+                'Authorization': localStorage.getItem('token')
             });
             setUsers((prevUsers) => prevUsers.filter((user) => user.key !== userId));
         } 

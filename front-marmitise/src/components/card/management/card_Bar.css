@@ -103,6 +103,7 @@
     gap: 32px;
     margin-top: 5%;
 }
+
 .card_Bar .addBarForm .btn {
     min-width: 20%;
     min-height: 50px;
@@ -110,4 +111,28 @@
     border-radius: 50px;
     font-size: 20px;
     
+}
+
+@media screen and (max-width: 1440px) {
+    .card_Bar .barList .buttonContainer {
+        margin: 1.5% 0% 6%;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .card_Bar .barList .buttonContainer {
+        margin: 3% 0% 10%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .card_Bar .barList .buttonContainer {
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .card_Bar .barList .buttonContainer {
+        gap: 10px;
+    }
 }

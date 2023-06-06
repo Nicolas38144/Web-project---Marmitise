@@ -36,3 +36,38 @@
     cursor: pointer;
 }
 /**************************** Fin pour gérer les Tab ****************************/
+
+
+@media screen and (max-width: 1200px) {
+    .adminView .custom-tab-list {
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+        width: 40%;
+        text-align: center;
+        margin: 0% auto 7%;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .adminView .custom-tab-list {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 530px) {
+    .adminView .title_p {
+        font-size: 1.5em;
+        text-align: center;
+        margin-bottom: 15%;
+    }
+    .adminView .custom-tab-list {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .adminView .custom-tab-list {
+        width: 65%;
+    }
+}

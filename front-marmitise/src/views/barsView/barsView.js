@@ -16,8 +16,13 @@ export default function BarsView(props){
         const getBars= ()=> {
             var barsArray = [];
             var bar = {}
-            fetch('https://api-marmitise.onrender.com/api/bar/',{})
-            //fetch('http://localhost:8000/api/bar/',{})
+            fetch('https://api-marmitise.onrender.com/api/bar/',{
+            //fetch('http://localhost:8000/api/bar/',{
+                method: 'GET',
+                headers: {
+                    'Authorization': localStorage.getItem('token')
+                }
+            })
             .then((response) => { 
                 response.json().then((data) => {
                     for (let i = 0; i < data.length; i++) {

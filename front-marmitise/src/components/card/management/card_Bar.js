@@ -21,7 +21,13 @@ export default function Card_Bar() {
 
     const getBars = async () => {
         try {
-            const response = await fetch('https://api-marmitise.onrender.com/api/bar/', {});
+            const response = await fetch('https://api-marmitise.onrender.com/api/bar/', {
+            //const response = await fetch('http://localhost:8000/api/bar/', {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                }
+            });
             const data = await response.json();
             const barsArray = data.map((bar) => ({
                 key: bar._id,
@@ -39,7 +45,13 @@ export default function Card_Bar() {
 
     const getCocktails = async () => {
         try {
-            const response = await fetch('https://api-marmitise.onrender.com/api/cocktail/', {});
+            const response = await fetch('https://api-marmitise.onrender.com/api/cocktail/', {
+            //const response = await fetch('http://localhost:8000/api/cocktail/', {
+                method: 'GET',
+                headers: {
+                    'Authorization': localStorage.getItem('token')
+                }
+            });
             const data = await response.json();
             const cocktailsArray = data.map((cocktail) => ({
                 key: cocktail._id,
@@ -60,8 +72,10 @@ export default function Card_Bar() {
 
     const handleDelete = async (barId) => {
         try {
+            //await fetch(`http://localhost:8000/api/bar/${barId}`, {
             await fetch(`https://api-marmitise.onrender.com/api/bar/${barId}`, {
                 method: 'DELETE',
+                'Authorization': localStorage.getItem('token')
             });
             setBars((prevBars) => prevBars.filter((bar) => bar.key !== barId));
         } 
@@ -77,11 +91,12 @@ export default function Card_Bar() {
                 setErrorMessage('Ce nom de bar existe déjà dans cette ville');
             } 
             else {
-                console.log(editBarCocktails);
+                //const response = await fetch(`http://localhost:8000/api/bar/${barId}`, {
                 const response = await fetch(`https://api-marmitise.onrender.com/api/bar/${barId}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': localStorage.getItem('token')
                     },
                     body: JSON.stringify({ 
                         nom: editBarName,
@@ -112,10 +127,12 @@ export default function Card_Bar() {
                 setErrorMessage('Ce nom de bar existe déjà dans cette ville');
             } 
             else {
+                //const response = await fetch('http://localhost:8000/api/bar/', {
                 const response = await fetch('https://api-marmitise.onrender.com/api/bar/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': localStorage.getItem('token')
                     },
                     body: JSON.stringify({ 
                         nom: newBarName,
@@ -210,7 +227,7 @@ export default function Card_Bar() {
                         </div>
                         {isEditingBar && editBarId === bar.key && (
                             <div className='cocktailsList'>
-                                <h4>Cocktails du bar :</h4>
+                                <h4>Bar's cocktails :</h4>
                                 {cocktails.map((cocktail) => (
                                     <div key={cocktail.key} className='cocktailItem'>
                                         <input
@@ -225,13 +242,13 @@ export default function Card_Bar() {
                         )}
                         {isEditingBar && editBarId === bar.key ? (
                             <div className='buttonContainer'>
-                                <button className="btn" onClick={() => handleUpdate(bar.key)}>Valider</button>
-                                <button className="btn" onClick={handleCancelEdit}>Annuler</button>
+                                <button className="btn" onClick={() => handleUpdate(bar.key)}>Validate</button>
+                                <button className="btn" onClick={handleCancelEdit}>Cancel</button>
                             </div>
                         ) : (
                             <div className='buttonContainer'>
-                                <button className="btn" onClick={() => handleEdit(bar.key, bar.nom, bar.localisation, bar.cocktails)}>Modifier</button>
-                                <button className="btn" onClick={() => handleDelete(bar.key)}>Supprimer</button>
+                                <button className="btn" onClick={() => handleEdit(bar.key, bar.nom, bar.localisation, bar.cocktails)}>Modify</button>
+                                <button className="btn" onClick={() => handleDelete(bar.key)}>Delete</button>
                             </div>
                         )}
                     </div>
@@ -244,7 +261,7 @@ export default function Card_Bar() {
             )}
             {isAddingBar && (
                 <div className='addBarForm'>
-                    <h3>Ajouter un nouveau bar :</h3>
+                    <h3>Add a new bar :</h3>
                     <input
                         className='input'
                         type='text'
@@ -277,8 +294,8 @@ export default function Card_Bar() {
                         </div>
                     ))}
                     <div className='buttonContainer'>
-                        <button className="btn" onClick={handleAddBar}>Valider</button>
-                        <button className="btn" onClick={handleCancelAddBar}>Annuler</button>
+                        <button className="btn" onClick={handleAddBar}>Validate</button>
+                        <button className="btn" onClick={handleCancelAddBar}>Cancel</button>
                     </div>
                 </div>
             )}

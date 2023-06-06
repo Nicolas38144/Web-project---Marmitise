@@ -17,8 +17,13 @@ export default function CocktailsView(props){
         const getCocktails= ()=> {
             var cocktailsArray = [];
             var cocktail = {}
-            //fetch('http://localhost:8000/api/cocktail/',{})
-            fetch('https://api-marmitise.onrender.com/api/cocktail/',{})
+            //fetch('http://localhost:8000/api/cocktail/',{
+            fetch('https://api-marmitise.onrender.com/api/cocktail/',{
+                method: 'GET',
+                headers: {
+                    'Authorization': localStorage.getItem('token')
+                }
+            })
             .then((response) => { 
                 response.json().then((data) => {
                     for (let i = 0; i < data.length; i++) {

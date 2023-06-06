@@ -78,3 +78,33 @@
 .card_Alcool .msg_error {
     text-align: center;
 }
+
+
+@media screen and (max-width: 1140px) {
+    .card_Alcool .card_Alcool_0 {
+        display: flex;
+        flex-direction: column;
+        row-gap: 60px;
+    }
+    .card_Alcool .card_Alcool_0 .alcoolItem .div_info {
+        text-align: center;
+        margin: auto;
+    }
+    .card_Alcool .card_Alcool_0 .alcoolItem .div_btn {
+        margin: auto;
+        width: 95%;
+    }
+    .card_Alcool .card_Alcool_0 .alcoolItem {
+        flex-direction: column;
+        margin: auto;
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .card_Alcool .card_Alcool_0 .alcoolItem .div_btn {
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+    }
+}

@@ -23,3 +23,51 @@
     border-radius: 50px;
     font-size: 20px;
 }
+
+@media screen and (max-width: 1300px) {
+    .card_Cocktail {
+        flex-wrap: unset;
+        flex-direction: column;
+        width: 90%;
+    }
+    .card_Cocktail .cocktailItem {
+        width: 60%;
+        display: flex;
+        align-items: unset;
+        margin-top: unset;
+        margin: 2% auto;
+    }
+    .card_Cocktail .div_btn {
+        margin-right: 0%;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .card_Cocktail .cocktailItem {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .card_Cocktail .cocktailItem {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 690px) {
+    .card_Cocktail .cocktailItem {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .card_Cocktail .cocktailItem {
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        text-align: center;
+    }
+    .card_Cocktail .div_btn {
+        margin: 15px 0% 50px;
+    }
+}

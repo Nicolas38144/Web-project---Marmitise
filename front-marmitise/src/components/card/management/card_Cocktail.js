@@ -6,7 +6,13 @@ export default function Card_Cocktail() {
 
     const getCocktails = async () => {
         try {
-            const response = await fetch('https://api-marmitise.onrender.com/api/cocktail/', {});
+            const response = await fetch('https://api-marmitise.onrender.com/api/cocktail/', {
+            //const response = await fetch('http://localhost:8000/api/cocktail/', {
+                method: 'GET',
+                headers: {
+                    'Authorization': localStorage.getItem('token')
+                }
+            });
             const data = await response.json();
             const cocktailsArray = data.map((cocktail) => ({
                 key: cocktail._id,
@@ -26,8 +32,12 @@ export default function Card_Cocktail() {
 
     const handleDelete = async (cocktailId) => {
         try {
+            //await fetch(`http://localhost:8000/api/cocktail/${cocktailId}`, {
             await fetch(`https://api-marmitise.onrender.com/api/cocktail/${cocktailId}`, {
                 method: 'DELETE',
+                headers: {
+                    'Authorization': localStorage.getItem('token')
+                }
             });
             setCocktails((prevCocktails) => prevCocktails.filter((cocktail) => cocktail.key !== cocktailId));
         } 
